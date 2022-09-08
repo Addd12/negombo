@@ -1,0 +1,127 @@
+{
+    "Welcome": "Bine ai venit",
+
+    "Home": "Acasă",
+    "Quick Booking": "Rezervă Acum",
+    "Places": "Locații",
+    "Contact Us": "Contactează-ne",
+    "Search": "Caută",
+    "Update Map": "Actualizează Harta",
+    "Instructions": "Instrucțiuni",
+    "Choose the day you wish to book": "Alegeți ziua în care doriți să rezervați",
+    "Update the map to see availability": "Actualizați harta pentru a vedea disponibilitatea",
+    "Select your favorite seat": "Alegeți locul preferat",
+    "You can book maximum": "Poți rezerva maximum",
+    "The white umbrellas are not bookable because they are intentionally left free for access to guests arriving at Negombo without having booked": "Umbrelele albe nu pot fi rezervate, deoarece sunt lăsate libere în mod intenționat pentru accesul oaspeților care sosesc la Negombo fără să fi făcut rezervare",
+
+
+    "Book your favorite place on the map":"Rezervați-vă locul pe hartă",
+    "Recommended Places":"Locuri Recomandate",
+    "Javascript is not enabled, it is necessary to enable JavaScript":"Javascript nu e activat, este necesară activarea acestuia",
+    "Instructions how to enable JavaScript in your web browser":"Instrucțiuni referitoare la activarea",
+
+    "Check In":"Check In",
+    "Check Out" : "Check Out",
+    "Number of days" : "Număr de zile",
+    "day": "zi",
+    "days": "zile",
+    "Today": "Astăzi",
+    "Arrival day": "Ziua sosirii",
+    "Choose Your Place Here": "Alegeți locul aici",
+    "Number of maximum days exceed": "Numărul maxim de zile depășește",
+
+
+    "Place Details": "Detalii referitoare la locație",
+    "Place ID": "ID-ul locului",
+    "Place Name": "Numele locului",
+    "Area": "|Zonă",
+    "Place Description": "Descrierea zonei",
+    "Prices": "Prețuri",
+    "Price to Pay": "Preț de plătit",
+
+    "Look at the price table": "Uită-te la tabelul de prețuri",
+
+    "Adult": "Adult",
+    "Baby": "Copil",
+
+    "Booking Reservation": "Rezervă",
+    "Personal Information": "Informații personale",
+    "Full Name": "Numele întreg",
+    "Name and Surname of the person making the reservation and payment": "Numele și prenumele persoanei care a făcut rezervarea și plata",
+    "We'll never share your personal information with anyone else": "Nu vă vom dezvălui datele cu caracter personal",
+    "Surname": "Nume de familie",
+    "Email address": "Adresă de mail",
+    "Booking Tracking Number will be send in your email address": "Numărul rezervării vă va fi trimis pe email",
+    "Phone": "Telefon",
+    "Booking Information": "Informații despre rezervare",
+    "Number of adults": "Număr de adulți",
+    "Number of babies": "Număr de copii",
+    "Booking Date": "Data rezervării",
+    "Promo Code": "Cod promoțional",
+    "Payment Type": "Modalitate de plată",
+    "Continue": "Continuă",
+    "Agreements": "Acord",
+    "Promo Error for": "Eroare promoțională pentru",
+
+    "Children under 1 m in height enter for free, for children from 1 m to 1.40 m high the child rate applies, children over 1.40 m in height are considered adults and can access all pools of the park.": "Copiii sub 1m au intrarea gratuită, pentru cei între 1m și 1.40m se aplică tariful pentru copii, iar cei peste 1.40m sunt considerați adulți și pot accesa toate echipamentele din parc",
+
+    "Booking Confirmation": "Confirmarea rezervării",
+    "Hi": "Salut",
+    "the place is available for booking": "Locul este disponibil pentru rezervare",
+    "Entranced by": "Însoțit de",
+    "Booked by": "Rezervat de",
+
+    "Payment with Paypal": "Plata cu paypal",
+    "Payment Status": "Statusul plății",
+    "Pending": "În așteptare",
+    "Paid": "Plătit",
+    "Hand Cash": "Cash",
+    "On hold": "În așteptare",
+    "Congratulations": "Felicitări",
+    "You have a successful booking": "Ai rezervat cu succes",
+    "Tracking Number": "Număr de identificare",
+    "Store your tracking number for future tracking, also check your email about the booking confirmation": "Notați numărul de urmărire pentru identificare ulterioară, de asemenea verificați-vă emailul pentru a viziona confirmarea rezervării",
+
+    "All payments are accepted as confirmation of deposit": "Toate plățile sunt acceptate ca și confirmare pentru depozit",
+
+    "Map place is available": "Locul de pe hartă este disponibil",
+    "Loading, Please donot close the page": "Se încarcă, vă rugăm nu părăsiți pagina",
+
+    "Contact With Us": "Contactează-ne",
+
+    "Map Location": "Locația hărții",
+    "Call Us": "Sună-ne",
+
+    "Due Paid Amount": "Sumă de plătit",
+    "Paid Amount": "Sumă plătită",
+
+    "Arrival day is not selected": "Ziua sosirii nu e selectată",
+
+
+
+    "Terms and Regulations": "Termeni și reglementări",
+    "I agree to the": "Sunt de acord cu",
+
+    "Print Reservation": "Printează rezervarea",
+
+    "Adults": "Adulți",
+
+    "Pay": "Plătește",
+
+
+    "IMPORTANT": "IMPORTANT",
+    "At the time of payment, enter Credit Card details, at the end of the operation you must remain on the negombo.it website until the booking confirmation is printed": "La momentul efectuării plății, introduceți detaliile cardului și nu părăsiți pagina negombo.it, până cănd confirmarea rezervării e printată",
+    "Receipt of payment without booking confirmation from the negombo.it site does not entail the actual assignment of the seat": "Bonul fiscal fără confirmarea rezervării de pe site-ul negombo.it nu asigură alocarea scaunului",
+    "We inform you that having purchased the entrance ticket (s) to the Park with reservation, as a confirmation deposit, it will not be possible to accept requests for reimbursement, modification or cancellation": "Va informam ca achizitionand biletul(e) de intrare in Parc cu rezervare, ca avans de confirmare, nu se vor putea accepta cereri de rambursare, modificare sau anulare.",
+
+
+    "If you have successfully paid, we need to complete your booking": "Dacă plata s-a realizat cu succes, trebui să-ți confirmăm rezervarea ",
+    "Follow these simple instructions": "Urmărește aceste instrucțiuni",
+    "Click on the red \"Close\" button": "Apasă pe roșu \"Închide\"",
+    "Click on the green \"Continue\" button": "Apasă pe verde\"Continuă\"",
+    "Download the document with the reservation": "Descarcă documentul fără rezervare",
+    "It is important to carry out these operations otherwise there could be problems in the booking": "Este important să desfășori aceste operațiuni sau probleme în cadrul rezervării pot apărea",
+
+    "Sitemap": "Harta site-ului"
+
+}
