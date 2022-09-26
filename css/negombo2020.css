@@ -128,6 +128,7 @@ body {
 }
 
 .map_frame_style{
+
   height: 450px;
 }
 #baseMapimgStyle{
@@ -149,10 +150,6 @@ body {
 	.containersmallmap a{
 		font-size:5px;
 	}
-
-  .map_frame_style{
-    height: 300px;
-  }
 
   #map_stype_whole{
     padding-top: 20px;
@@ -178,7 +175,6 @@ footer {
 
 .footer-style{
 	color: #E8F5E9;;
-	font-family:
 	border:none !important;
 	font-size:16px;
   	line-height:24px;
@@ -565,6 +561,28 @@ footer {
 
 #src_sm_btn{
   margin-left:30px;
+}
+
+.contactHeader{
+	text-align: center;
+	font-weight: 700;
+}
+
+.contact{
+	padding-left: 30%;
+}
+
+.map{
+	padding-right: 15%;
+}
+
+.contactDetails{
+	font-size: 16px;
+	padding: 15px;
+}
+
+.email{
+	text-decoration: none;
 }
 
 @media only screen and (max-width: 768px) {
