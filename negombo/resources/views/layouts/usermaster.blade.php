@@ -18,6 +18,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/intl-tel-input@17.0.3/build/js/intlTelInput.js"></script>
 
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
 
@@ -90,9 +91,9 @@
 
             </ul>
             {{-- Right--}}
-            <ul class="navbar-nav mr-right">
+            <ul class="navbar-nav me-auto">
                 {{-- Languages--}}
-                <div class="nav-item itmstyle">
+                <div class="nav-item itmstyle justify-content-end">
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink"
                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -163,43 +164,18 @@
 <div class="padding20"></div>
 <footer class="footer-style">
     <div class="container">
-        <div class="row">
-            <div class="col-sm-12 col-md-6">
-                <div style="align-content: center">
-                    <h3 style="margin-left:50px"><i class="fa fa-phone" aria-hidden="true" ></i> {{ (__('Call Us')) }}:
-                    </h3>
-                    <h2 style="margin-left:50px;"><strong class="fn_num_view">+39 081 986152</strong></h2>
-                </div>
+        <div class="d-flex justify-content-center">
+            <a href="{{ url('/') }}"><img src="{{ asset('images/siteimages/logo-color.svg') }} "height="55px" width="250px"></a>
+        </div>
+        <div class="contactFooter">
+            <p><i class="fa-solid fa-location-dot"></i>  San Montano Bay, 80076 Lacco Ameno - Ischia Island (Naples)</p>
+            <div class="pulser">
+                <i class="fa-solid fa-phone"></i> {{ (__('Call Us')) }}: +39 081 986152
             </div>
-            <div class="col-xs-6 col-md-3">
-                <h3 class="margin_text-footer">{{ __('Sitemap') }}</h3>
-                <ul class="list-unstyled quick-links margin_text-footer">
-                    <li><a href="{{ route('user.index') }}"><i class="fa fa-angle-double-right"></i>{{ __('Home')
-                                }}</a>
-                    </li>
-                    {{-- <li><a href="javascript:void();"><i class="fa fa-angle-double-right"></i>{{ __('Quick
-                            Booking') }}</a></li> --}}
-                    <li><a href="{{ route('user.prices') }}"><i class="fa fa-angle-double-right"></i>{{ __('Prices')
-                                }}
-                        </a></li>
-                    <li><a href="{{ route('user.contact') }}"><i class="fa fa-angle-double-right"></i>{{ __('Contact
-                                Us') }}</a></li>
-                </ul>
-            </div>
-            <div class="col-xs-6 col-md-3">
-                <h3 class="margin_text-footer">Policy</h3>
-                <ul class="list-unstyled quick-links margin_text-footer">
-                    <li><a href="{{ route('user.regulations') }}"><i class="fa fa-angle-double-right"></i>{{
-                                __('Terms and Regulations') }}</a></li>
-                    <li><a href="{{ route('user.privacy') }}"><i class="fa fa-angle-double-right"></i>Privacy
-                            Policy</a>
-                    </li>
-                    {{-- <li><a href="javascript:void();"><i class="fa fa-angle-double-right"></i>Feedback</a></li>
-                    --}}
-                    <li><a href="https://www.negombo.it"><i class="fa fa-angle-double-right"></i>Official
-                            Website</a></li>
-                </ul>
-            </div>
+        </div>
+        <div class="d-flex justify-content-center">
+            <span><a class="policy" href="{{ route('user.regulations') }}">{{__('Terms and Regulations') }}</a></span>
+            <span><a class="policy" href="{{ route('user.privacy') }}">Privacy Policy</a></span>
         </div>
         <hr>
         <!-- last fotter start -->
@@ -214,12 +190,10 @@
             </div>
             <div class="col-md-4 col-sm-6 col-xs-12">
                 <ul class="social-icons">
-                    <li><a class="facebook" target="_blank" href="https://www.facebook.com/negombo"><i
-                                class="fa fa-facebook"></i></a></li>
-                    <li><a class="dribbble" target="_blank" href="https://www.instagram.com/negomboischia"><i
-                                class="fa fa-instagram"></i></a></li>
+                    <li><a class="facebook" target="_blank" href="https://www.facebook.com/negombo"><i class="fa-brands fa-facebook-f"></i></a></li>
+                    <li><a class="dribbble" target="_blank" href="https://www.instagram.com/negomboischia"><i class="fa-brands fa-instagram"></i></a></li>
                     {{-- <li><a class="dribbble" href="#"><i class="fa fa-dribbble"></i></a></li> --}}
-                    <li><a class="linkedin" href="https://www.negombo.it"><i class="fa fa-copyright"></i></a></li>
+                    <li><a class="linkedin" href="https://www.negombo.it"><i class="fa-regular fa-copyright"></i></a></li>
                 </ul>
             </div>
         </div>
