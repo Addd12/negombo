@@ -31,8 +31,8 @@
 
                     </tr>
                     </thead>
-                    <div id="preloader"></div>
-                    <tbody id="hidden_table_processing">
+                    <!-- <div id="preloader"></div> id="hidden_table_processing" -->
+                    <tbody >
                     @foreach ($places as $place)
                         <tr>
                             <td>{{ $place->place_name }}</td>
@@ -140,7 +140,7 @@
                     </tbody>
                 </table>
 
-                <div id="loader_space"></div>
+<!--                 <div id="loader_space"></div>
                 <script type="text/javascript"
                         src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.0.2/pace.min.js"></script>
                 <script>
@@ -155,7 +155,7 @@
                         document.getElementById("loader_space").style.display = "none";
                         $('#hidden_table_processing').fadeIn(200);
                     });
-                </script>
+                </script> -->
 
                 <script>
                     var today = new Date();
