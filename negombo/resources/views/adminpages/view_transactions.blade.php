@@ -18,8 +18,8 @@
                         <th>{{ __('Created At') }}</th>
                     </tr>
                 </thead>
-                <div id="preloader"></div>
-                <tbody id="hidden_table_processing">
+<!--                 <div id="preloader"></div> id="hidden_table_processing" -->
+                <tbody >
                   @foreach ($transactions as $transaction)
                     <tr>
                         <td>{{ $transaction->id }}</td>
@@ -36,7 +36,7 @@
                 </tbody>
             </table>
 
-            <div id="loader_space"></div>
+<!--             <div id="loader_space"></div>
             <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.0.2/pace.min.js"></script>
             <script>
                 paceOptions = {
@@ -50,7 +50,7 @@
                   document.getElementById("loader_space").style.display = "none";
                   $('#hidden_table_processing').fadeIn(200);
                 });
-            </script>
+            </script> -->
 
         </div>
     </div>
