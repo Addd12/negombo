@@ -167,8 +167,8 @@ class Booking extends Model
     public function paywithCard($place_price){
       // implementation of api
       $unicredit = new UnicreditApi();
-      // $args = array('serverURL' => 'https://testeps.netswgroup.it/UNI_CG_SERVICES/services',
-      $args = array('serverURL' => 'https://pagamenti.unicredit.it/UNI_CG_SERVICES/services',
+       $args = array('serverURL' => 'https://testeps.netswgroup.it/UNI_CG_SERVICES/services',
+      //$args = array('serverURL' => 'https://pagamenti.unicredit.it/UNI_CG_SERVICES/services',
                     'timeout' => 15000,
                     'tid' => '30687521',
                     'kSig' => '3j0i3b0c0f8g5b1j0j0h3j0i3b0j0j0h',
