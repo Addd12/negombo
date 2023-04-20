@@ -55,6 +55,16 @@ class PagesController extends Controller
         return view('Temp')->with('maparray', $maparray);
     }
 
+    public function erase($place_id,$place_name){
+
+      $booking = Booking::where('place_id',$place_id)->first();
+      $temp_book = TempBooking::where('place_id',$place_id)->first();
+      $temp_book->makeFree($booking->place_id, $booking->checkin);
+      $places = Place::orderBy('id');
+      
+      return redirect()->route('user.viewsmallplace', $place_name);
+    }
+
     public function index(){
       $map_coods = Bigmapmapping::orderBy('id')->get();
       $allplaces = Place::inRandomOrder()->get();
