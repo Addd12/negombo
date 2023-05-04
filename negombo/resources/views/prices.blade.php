@@ -8,7 +8,7 @@
                 <div class="card">
                     <div class="card-body">
 
-                        <h3><strong>{{ (__('Prices from opening to 29th July and from 5th September until closing')) }} </strong></h3>
+                        <h3><strong>{{ (__('Prezzi dallapertura al 30 Giugno - dal 11 Settembre alla chiusura')) }} </strong></h3>
                         <table style="width:100%" align="center" class="table">
                             <tr>
                                 <td></td>
@@ -119,9 +119,9 @@
                             {{--                            Price per kid--}}
                             <tr>
                                 <td><strong>1 {{ __('Baby') }}: </strong></td>
+                                <td>€ 28,00</td>
                                 <td>€ 25,00</td>
                                 <td>€ 20,00</td>
-                                <td>€ 15,00</td>
                                 <td> {{__('Height between 1m and 1.40m')}}</td>
                             </tr>
                         </table>
@@ -148,7 +148,7 @@
                 <div class="card">
                     <div class="card-body">
 
-                        <h3><strong>{{ (__('Prices from 30th July to 4th September')) }} </strong></h3>
+                        <h3><strong>{{ (__('Prezzi dal 1 Luglio al 10 Settembre')) }} </strong></h3>
                         <table style="width:100%" align="center" class="table">
                             <tr>
                                 <td></td>
@@ -242,7 +242,7 @@
                             {{--Price per kid--}}
                             <tr>
                                 <td><strong>1 {{ __('Baby') }}: </strong></td>
-                                <td>€ 28,00</td>
+                                <td>€ 30,00</td>
                                 <td>€ 25,00</td>
                                 <td>€ 20,00</td>
                                 <td> {{__('Height between 1m and 1.40m')}}</td>
