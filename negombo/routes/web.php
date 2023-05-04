@@ -23,7 +23,7 @@ Route::post('/booking/confirm', 'PagesController@confirmbooking')->name('user.cr
 Route::post('/booking/confirm/payment', 'PagesController@confirmbookingpayment')->name('user.createbooking.confirm.payment');
 Route::post('/booking/confirm/payment/stripe', 'PagesController@confirmbookingpaymentstripe')->name('user.createbooking.confirm.payment.stripe');
 Route::get('/booking/payment/tracking/{tracking_id}', 'PagesController@confirmbookingpaymentpaypal')->name('user.createbooking.payment.track');
-
+Route::get('/booking/erase/{place_id}/{place_name}', 'PagesController@erase')->name('user.createbooking.erase');
 
 Route::get('/booking/confirm/card/{tracking_id}', 'BookingController@confirmCreditcard')->name('user.createbooking.confirmcreditcard');
 
