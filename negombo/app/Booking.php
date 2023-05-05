@@ -183,10 +183,10 @@ class Booking extends Model
                     'addInfo3' => "Check-out: ".$this->user_checkout,
                     'addInfo4' => "NumOfAdults: ".$this->user_no_of_guest,
                     'addInfo5' => "Phone: ".$this->user_phone,
-                    //'notifyURL' => 'http://prenotazioni.negombo.it/booking/confirm/card/'.$this->user_booking_tracking_id,
-                    //'errorURL' => 'http://prenotazioni.negombo.it/404',
-                     'notifyURL' => 'http://127.0.0.1:8000/booking/confirm/card/'.$this->user_booking_tracking_id,
-                     'errorURL' => 'http://127.0.0.1:8000/404',
+                    'notifyURL' => 'http://prenotazioni.negombo.it/booking/confirm/card/'.$this->user_booking_tracking_id,
+                    'errorURL' => 'http://prenotazioni.negombo.it/404',
+                     //'notifyURL' => 'http://127.0.0.1:8000/booking/confirm/card/'.$this->user_booking_tracking_id,
+                     //'errorURL' => 'http://127.0.0.1:8000/404',
                     );
       $redirect = $unicredit->init($args);
       // echo $unicredit->getPaymentID();
