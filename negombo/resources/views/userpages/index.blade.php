@@ -85,7 +85,7 @@
     <div class="container-fluid">
         <h2 id="heading_qt1">{{ __('Welcome to Negombo') }}  </h2>
         <center>
-            <iframe width="1000" height="500" src="https://www.youtube.com/embed/GBGAhdeHrFA?autoplay=1&mute=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write;loop; muted; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+            <iframe width="1000" height="500" src="https://www.youtube.com/embed/GBGAhdeHrFA?autoplay=1&mute=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write;loop; muted; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
             </iframe>
         </center>
     </div>

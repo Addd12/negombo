@@ -45,12 +45,12 @@
     <label for="surename">Nominativo 1 Nome Cognome:</label>
     <input class="form-control booking_inp_textbox_style" type="text" name="user_fullname" required/>
   </div>
-  <div class="containeraddinput">
+<!--   <div class="containeraddinput">
     {{-- dynamic input surname using javascript --}}
   </div>
   <div class="containeraddinput2">
     {{-- dynamic input surname using javascript --}}
-  </div>
+  </div> -->
   {{-- <div class="form-group"> --}}
    {{-- <label >{{ __('Booking Date') }}</label><br> --}}
    {{-- <input type="hidden" name="t_start" value="{{ $maparray['checkin'] }}">
