@@ -83,7 +83,7 @@
                 <div class="details">
                   <h6>{{ $map->map_name }}</h6>
                 </div>
-                <a class="buy" href="/negombo-master/viewplaces/{{ $map->map_name }}"><i class="material-icons" aria-hidden="true">book</i></a>
+                <a class="buy" href="{{ route('user.viewsmallplace', [$map->map_name] )}}"><i class="material-icons" aria-hidden="true">book</i></a>
               </div>
             </div>
           </div>
@@ -114,7 +114,7 @@
                 <span>4 {{ __('Adults')." & 1 ".__('Baby') }}: {{ $maparray['set_admin']->lw_adult4_1baby_price }} <i class="fa fa-eur" aria-hidden="true"></i></span><br>
               @endif
               <br>
-              <a href="/negombo-master/viewplaces/{{ $map->map_name }}"><strong style="color:white;">{{ __('Book now!') }}</strong></a>
+              {{-- <a href="/negombo-master/viewplaces/{{ $map->map_name }}"><strong style="color:white;">{{ __('Book now!') }}</strong></a> --}}
             </div>
           </div>
         </div>
