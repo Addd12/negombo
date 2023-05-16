@@ -7,14 +7,11 @@
     <div class="card-body">
         @php
 
-          $checkIn =  date("d/m/Y", strtotime($maparray['booking']->user_checkin))
-          $checkOut =  date("d/m/Y", strtotime($maparray['booking']->user_checkin))
-
           $all_content = str_replace("[name]", $maparray['booking']->user_fullname, $maparray['set_admin']->booking_email_content);
           $all_content = str_replace("[tracking_id]", $maparray['booking']->user_booking_tracking_id, $all_content);
           $all_content = str_replace("[booking_id]", $maparray['booking']->id, $all_content);
-          $all_content = str_replace("[checkin_date]", $checkIn, $all_content);
-          $all_content = str_replace("[checkout_date]", $checkOut, $all_content);
+          $all_content = str_replace("[checkin_date]", $maparray['booking']->user_checkin, $all_content);
+          $all_content = str_replace("[checkout_date]", $maparray['booking']->user_checkout, $all_content);
 
           $all_content = str_replace("[user_email]", $maparray['booking']->user_email, $all_content);
           $all_content = str_replace("[user_phone]", $maparray['booking']->user_phone, $all_content);
