@@ -159,9 +159,7 @@
                                     @if ($place->status==0)
                                         @php                                           
                                         $makestr = '+'.($maparray["set_admin"]->max_no_days)." day";
-                                        // si la fecha no esta dentro de los dias permitidos 
-                                            if( strtotime($maparray['checkin_date']) > strtotime($makestr) ){
-                                            
+                                            if( strtotime($maparray['checkin_date']) > strtotime($makestr) ){                                           
                                         @endphp                                                
                                                 <a onclick="return false;" href="" id="{{ 'mapmarkgy'.$ind }}"
                                            class="mapmarkgycls"
