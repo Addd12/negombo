@@ -157,7 +157,24 @@
                                 @foreach ($maparray['places'] as $place)
 
                                     @if ($place->status==0)
-                                        {{-- menually control colors for links for green --}}
+                                        @php                                           
+                                        $makestr = '+'.($maparray["set_admin"]->max_no_days)." day";
+                                            if( strtotime($maparray['checkin_date']) > strtotime($makestr) ){                                           
+                                        @endphp                                                
+                                                <a onclick="return false;" href="" id="{{ 'mapmarkgy'.$ind }}"
+                                           class="mapmarkgycls"
+                                           style="left: {{ $place->co_xl-15 }}px; top:{{ $place->co_yl-5 }}px;">{{ $place->place_id }}</a>
+
+                                        <script>
+                                            if (window.screen.width < 768) {
+                                                document.getElementById("{{ 'mapmarkgy'.$ind }}").style.left = "{{ $place->co_xs-10 }}" + "px";
+                                                document.getElementById("{{ 'mapmarkgy'.$ind }}").style.top = "{{ $place->co_ys-5 }}" + "px";
+                                            }
+                                        </script>
+                                        @php
+                                        }else{
+                                        @endphp
+
                                         <a href="{{ route('user.createbooking',  ['place_id' => $place->place_id, 'checkin' => $maparray['checkin_date'], 'checkout' => $maparray['checkout_date'], 'error_msg' => 0]) }}"
                                            class="mapmarkgrcls" id="{{ 'mapmarkgr'.$ind }}"
                                            style="left: {{ $place->co_xl-15 }}px; top:{{ $place->co_yl-5 }}px;">{{ $place->place_id }}</a>
@@ -168,6 +185,9 @@
                                                 document.getElementById("{{ 'mapmarkgr'.$ind }}").style.top = "{{ $place->co_ys-5 }}" + "px";
                                             }
                                         </script>
+                                        @php
+                                            }
+                                        @endphp                                
                                     @endif
                                     @if ($place->status== -1)
                                         {{-- menually control colors for links --}}
