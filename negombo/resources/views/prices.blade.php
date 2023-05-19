@@ -148,7 +148,7 @@
                 <div class="card">
                     <div class="card-body">
 
-                        <h3><strong>{{ (__('Prezzi dall\'1 Luglio al 10 Settembre')) }} </strong></h3>
+                        <h3><strong>{{ (__('Prezzi dal 1 Luglio al 10 Settembre')) }} </strong></h3>
                         <table style="width:100%" align="center" class="table">
                             <tr>
                                 <td></td>
