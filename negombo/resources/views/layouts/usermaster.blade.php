@@ -64,9 +64,9 @@
                     <li class="nav-item itmstyle">
                         <a class="nav-link " href="{{ url('/') }}"><span>{{ __('Home') }}</span></a>
                     </li>
-<!--                     <li class="nav-item itmstyle">
+                     <li class="nav-item itmstyle">
                         <a class="nav-link " href="{{ route('user.prices') }}"><span>{{ __('Prices') }}</span></a>
-                    </li> -->
+                    </li> 
                     {{-- <li class="nav-item itmstyle">
                         <a class="nav-link" href="#"><span>{{ __('Quick Booking') }}</span></a>
                     </li> --}}
