@@ -5,10 +5,10 @@
       <div class="col-sm-1">
 
       </div>
-      <div class="col-sm-4">
+      {{-- <div class="col-sm-4">
         @include('layouts.bookingplacedetails')
-      </div>
-      <div class="col-sm-6">
+      </div> --}}
+      <div class="col-sm-6 offset-sm-2">
         {{-- booking form --}}
         <h2>{{ __('Booking Confirmation') }}</h2>
         <hr>
