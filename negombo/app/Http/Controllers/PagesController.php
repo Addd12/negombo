@@ -424,10 +424,9 @@ class PagesController extends Controller
         $map_coods = Bigmapmapping::orderBy('id')->get();
         $maparray = array('place'=> $place, 'map_coods' => $map_coods, 'booking'=> $booking, 'discount'=> $discount);
         if($booking->user_payment_type == "Credit Card"){
-			    if($booking->paid_ammount == 0){
-            return redirect()->route('user.createbooking', ['place_id' => $booking->place_id, 'checkin' => $booking->user_checkin, 'checkout' => $booking->user_checkout, 'error_msg' => 1]);
-          }          
-			    $booking->paid_ammount = $place->price;
+          $booking->paid_ammount = $place->price;
+			    if($booking->paid_ammount == 0)
+            return redirect()->route('user.createbooking', ['place_id' => $booking->place_id, 'checkin' => $booking->user_checkin, 'checkout' => $booking->user_checkout, 'error_msg' => 1]);         			    
           $paymentCard = $booking->paywithCard(floatval($booking->paid_ammount));
           $temp_cardPayment = new TempbookingCard;
           $temp_cardPayment->loadAndSavedata($booking, $paymentCard['paymentID']);
