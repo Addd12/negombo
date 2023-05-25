@@ -409,8 +409,10 @@ class PagesController extends Controller
         $discount = $promoCode->discountCalculate($booking->user_promo, $place->price);
         $place->price = $place->price - $discount;
         $booking->paid_ammount = $place->price;
-
-	  }else if($booking->user_payment_type == "Agreements"){
+        if($place->price != 0 && $booking->user_payment_type == "Agreements"){
+          return redirect()->route('user.createbooking', ['place_id' => $booking->place_id, 'checkin' => $booking->user_checkin, 'checkout' => $booking->user_checkout, 'error_msg' => 1]);
+        }
+	    }else if($booking->user_payment_type == "Agreements"){
         return redirect()->route('user.createbooking', ['place_id' => $booking->place_id, 'checkin' => $booking->user_checkin, 'checkout' => $booking->user_checkout, 'error_msg' => 1]);
       }else if($booking->user_payment_type == "Admin"){
         $place->price = 0;
@@ -418,16 +420,14 @@ class PagesController extends Controller
         $booking->user_promo = "0";
       }
 
-
-
       if($booking->check_availability()){
         $map_coods = Bigmapmapping::orderBy('id')->get();
         $maparray = array('place'=> $place, 'map_coods' => $map_coods, 'booking'=> $booking, 'discount'=> $discount);
         if($booking->user_payment_type == "Credit Card"){
-			if($request->promocode != null) {
-				        return redirect()->route('user.createbooking', ['place_id' => $booking->place_id, 'checkin' => $booking->user_checkin, 'checkout' => $booking->user_checkout, 'error_msg' => 7]);
-			}
-			$booking->paid_ammount = $place->price;
+			    if($booking->paid_ammount == 0){
+            return redirect()->route('user.createbooking', ['place_id' => $booking->place_id, 'checkin' => $booking->user_checkin, 'checkout' => $booking->user_checkout, 'error_msg' => 1]);
+          }          
+			    $booking->paid_ammount = $place->price;
           $paymentCard = $booking->paywithCard(floatval($booking->paid_ammount));
           $temp_cardPayment = new TempbookingCard;
           $temp_cardPayment->loadAndSavedata($booking, $paymentCard['paymentID']);
