@@ -8,8 +8,15 @@
                 <div class="card">
                     <div class="card-body">
 
-                        <h3><strong>{{ (__('Prezzi dall\'apertura al 30 Giugno - dal 11 Settembre alla chiusura')) }} </strong></h3>
-                        <h3><strong>{{ (__('Prezzi dall\'apertura al 30 Giugno - dal 11 Settembre alla chiusura')) }} </strong></h3>
+                    @php
+                        $low_seasonS = date('d/m/Y', strtotime($maparray["set_admin"]->hi_season_start)-1);
+                        $low_seasonE = date('d/m/Y', strtotime($maparray["set_admin"]->hi_season_end."+ 1 days"));
+
+                        $hi_seasonS = date('d/m/Y', strtotime($maparray["set_admin"]->hi_season_start));
+                        $hi_seasonE = date('d/m/Y', strtotime($maparray["set_admin"]->hi_season_end));
+                    @endphp
+
+                        <h3><strong>Prices from opening to {{$low_seasonS}} and from {{$low_seasonE}} to closure  </strong></h3>
                         <table style="width:100%" align="center" class="table">
                             <tr>
                                 <td></td>
@@ -149,7 +156,7 @@
                 <div class="card">
                     <div class="card-body">
 
-                        <h3><strong>{{ (__('Prezzi dall\'1 Luglio al 10 Settembre')) }} </strong></h3>
+                        <h3><strong>Prices from {{$hi_seasonS}} to {{$hi_seasonE}} </strong></h3>
                         <table style="width:100%" align="center" class="table">
                             <tr>
                                 <td></td>
