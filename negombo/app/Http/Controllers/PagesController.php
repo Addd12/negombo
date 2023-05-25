@@ -205,8 +205,8 @@ class PagesController extends Controller
 
       if($promoCode->checkingValidity($booking->user_promo, $place->map_name, $numberofdays) && $promoCode->usedPromoOnce($booking->user_promo, $numberofdays)){
 
-        //$discount = $promoCode->discountCalculate($booking->user_promo, $place->price);
-       // $place->price = $place->price - $discount;
+        $discount = $promoCode->discountCalculate($booking->user_promo, $place->price);
+        $place->price = $place->price - $discount;
         $booking->paid_ammount = $place->price;
       }else if(isset($request->user_promo)){
         $booking->user_promo = "0";
@@ -308,8 +308,8 @@ class PagesController extends Controller
 
       if($promoCode->checkingValidity($promo, $place->map_name, $numberofdays) && $promoCode->usedPromoOnce($promo, $numberofdays)){
         $booking->user_promo = $promo;
-       // $discount = $promoCode->discountCalculate($booking->user_promo, $place->price);
-       // $place->price = $place->price - $discount;
+        $discount = $promoCode->discountCalculate($booking->user_promo, $place->price);
+        $place->price = $place->price - $discount;
         $booking->paid_ammount = $place->price;
       }
 
@@ -406,8 +406,8 @@ class PagesController extends Controller
 
         $booking->user_promo = $promo;
 
-       // $discount = $promoCode->discountCalculate($booking->user_promo, $place->price);
-      //  $place->price = $place->price - $discount;
+        $discount = $promoCode->discountCalculate($booking->user_promo, $place->price);
+        $place->price = $place->price - $discount;
         $booking->paid_ammount = $place->price;
 
 	  }else if($booking->user_payment_type == "Agreements"){

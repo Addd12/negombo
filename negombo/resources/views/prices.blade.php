@@ -9,6 +9,7 @@
                     <div class="card-body">
 
                         <h3><strong>{{ (__('Prezzi dall\'apertura al 30 Giugno - dal 11 Settembre alla chiusura')) }} </strong></h3>
+                        <h3><strong>{{ (__('Prezzi dall\'apertura al 30 Giugno - dal 11 Settembre alla chiusura')) }} </strong></h3>
                         <table style="width:100%" align="center" class="table">
                             <tr>
                                 <td></td>
