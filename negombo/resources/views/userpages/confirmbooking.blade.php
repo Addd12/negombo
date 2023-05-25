@@ -93,11 +93,18 @@
                   </tr>
 
                   @isset($maparray['booking']->user_promo)
+                    @if ($maparray['booking']->user_promo == "0")
+                      <tr>
+                        <td colspan="2"><span><strong>{{ __('Used Promo') }}: </strong></span></td>
+                        <td colspan="2"><span style="color:red">{{ __('Not found') }} / {{ __('Expired') }}</span></td>
+                      </tr>
+                    @else
                       @isset($maparray['discount'])
                         @if ($maparray['discount'] != "0")
                           <span><strong>{{ __('Discount') }}: </strong></span><span>{{ $maparray['discount'] }} {{ $maparray['place']->currency_type }}</span><br>
                         @endif
                       @endisset
+                    @endif
                   @endisset
               </table>
 
