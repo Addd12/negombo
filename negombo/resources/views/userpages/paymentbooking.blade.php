@@ -5,10 +5,10 @@
       <div class="col-sm-1">
 
       </div>
-      <div class="col-sm-4">
+      {{-- <div class="col-sm-4">
         @include('layouts.bookingplacedetails')
-      </div>
-      <div class="col-sm-6">
+      </div> --}}
+      <div class="col-sm-6 offset-sm-2">
         {{-- booking form --}}
         <h2>{{ __('Booking Confirmation') }}</h2>
         <hr>
@@ -94,11 +94,15 @@
                 </table>
 
 
-              @isset($maparray['booking']->user_promo)
-
+                @isset($maparray['booking']->user_promo)
+                @if ($maparray['booking']->user_promo == "0")
+                  <span><strong>{{ __('Used Promo') }}: </strong></span><span style="color:red;">{{ __('Not found') }} / {{ __('Expired') }}</span><br>
+                @else
+                  <span><strong>{{ __('Used Promo') }}: </strong></span><span>{{ $maparray['booking']->user_promo }}</span><br>
                   @isset($maparray['discount'])
                     @if ($maparray['discount'] != "0")
-                      <span><strong>Prezzo Totale: </strong></span><span>{{ $maparray['discount'] }} {{ $maparray['place']->currency_type }}</span><br>
+                      <span><strong>{{ __('Discount') }}: </strong></span><span>{{ $maparray['discount'] }} {{ $maparray['place']->currency_type }}</span><br>
+                    @endif
                   @endisset
                 @endif
               @endisset
@@ -108,11 +112,11 @@
                 @include('layouts.payment.paypalformat')
                 <span><strong>{{ __('Payment Status') }}:</strong></span> <span id="_payment_status">{{ __('Pending') }}</span>
               @elseif ($maparray['booking']->user_payment_type=="Agreements")
-                <span><strong>{{ __('Payment Status') }}:</strong></span> <span id="_payment_status">{{ __('On hold') }}</span>
+                {{-- <span><strong>{{ __('Payment Status') }}:</strong></span> <span id="_payment_status">{{ __('On hold') }}</span> --}}
                 <br>
                 @include('layouts.payment.bookingdatapassform')
               @elseif ($maparray['booking']->user_payment_type=="Credit Card")
-                {{-- <span><strong>{{ __('Payment Status') }}:</strong></span> <span id="_payment_status">{{ __('On hold') }}</span> --}}
+                 <span><strong>{{ __('Payment Status') }}:</strong></span> <span id="_payment_status">{{ __('On hold') }}</span> 
                 <br>
                 @include('layouts.payment.creditcardformat')
 

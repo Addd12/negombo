@@ -6,6 +6,8 @@
       <span>{{ __('Place ID') }}: </span><span>#{{ $maparray['place']->place_id }}</span><br>
       <span>{{ __('Place Name') }}: </span><span>{{ $maparray['place']->place_name }}</span><br>
       <span>{{ __('Area') }}: </span><span>{{ $maparray['place']->map_name }}</span><br>
+      <span>{{ __('From') }} {{ date("d/m/Y", strtotime($maparray['checkin'])) }} {{ __('to') }} {{ date("d/m/Y", strtotime($maparray['checkout'])) }} </span><br>
+
   </div>
 </div><br>
 

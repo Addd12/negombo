@@ -18,12 +18,6 @@ class TempbookingCard extends Model
       $this->user_phone = $booking->user_phone;
       $this->user_no_of_guest = $booking->user_no_of_guest;
       $this->user_no_of_babies = $booking->user_no_of_babies;
-      $this->guest_surname1 = $booking->guest_surname1;
-      $this->guest_surname2 = $booking->guest_surname2;
-      $this->guest_surname3 = $booking->guest_surname3;
-      $this->baby_surname1 = $booking->baby_surname1;
-      $this->baby_surname2 = $booking->baby_surname2;
-      $this->baby_surname3 = $booking->baby_surname3;
       $this->user_checkin = $booking->user_checkin;
       $this->user_checkout = $booking->user_checkout;
       $this->user_promo = $booking->user_promo;
