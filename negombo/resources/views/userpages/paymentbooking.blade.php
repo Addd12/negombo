@@ -108,11 +108,11 @@
                 @include('layouts.payment.paypalformat')
                 <span><strong>{{ __('Payment Status') }}:</strong></span> <span id="_payment_status">{{ __('Pending') }}</span>
               @elseif ($maparray['booking']->user_payment_type=="Agreements")
-                <span><strong>{{ __('Payment Status') }}:</strong></span> <span id="_payment_status">{{ __('On hold') }}</span>
+                {{-- <span><strong>{{ __('Payment Status') }}:</strong></span> <span id="_payment_status">{{ __('On hold') }}</span> --}}
                 <br>
                 @include('layouts.payment.bookingdatapassform')
               @elseif ($maparray['booking']->user_payment_type=="Credit Card")
-                {{-- <span><strong>{{ __('Payment Status') }}:</strong></span> <span id="_payment_status">{{ __('On hold') }}</span> --}}
+                 <span><strong>{{ __('Payment Status') }}:</strong></span> <span id="_payment_status">{{ __('On hold') }}</span> 
                 <br>
                 @include('layouts.payment.creditcardformat')
 
