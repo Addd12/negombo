@@ -61,14 +61,12 @@ class PromoCode extends Model
   public function checkUsers($promoCode, $num_of_adults, $num_of_babies)
   {
     $promo_match_for_map = PromoCode::where('promocode', $promoCode)
-      ->first();
-    if ($promo_match_for_map->promo_type != '1') {     
+      ->first();   
       if ($promo_match_for_map->numberofadults >= $num_of_adults && $promo_match_for_map->numberofbabies >= $num_of_babies) {
         return true;
       } else {
         return false;
       }
-    }
   }
 
     public function usedPromoOnce($promoCode, $date){
