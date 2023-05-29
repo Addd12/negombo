@@ -7,7 +7,7 @@
       {{-- <div class="col-sm-4">
         @include('layouts.bookingplacedetails')
       </div> --}}
-      <div class="col-sm-6">
+      <div class="col-sm-6 offset-sm-2">
         {{-- booking form --}}
         <h2>Negombo {{ __('Booking Reservation') }}</h2>
         <hr>
