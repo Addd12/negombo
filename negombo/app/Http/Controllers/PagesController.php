@@ -337,7 +337,7 @@ class PagesController extends Controller
         }else{
           $Promo = "No Promo";
         }
-
+        var_dump($Promo);die();
 
         $map_coods = Bigmapmapping::orderBy('id')->get();
         $maparray = array('place'=> $place, 'map_coods' => $map_coods, 'booking'=> $booking, 'set_admin' => $set_admin, 'promo_type' => $Promo);
