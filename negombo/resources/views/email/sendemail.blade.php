@@ -22,9 +22,8 @@
     $all_content = str_replace("[no_of_babies]", $maparray['booking']->user_no_of_babies, $all_content);
     $all_content = str_replace("[payment_type]", $maparray['booking']->user_payment_type, $all_content);
     $all_content = str_replace("[paid_amount]", $maparray['booking']->paid_ammount, $all_content);
-    if($maparray['promo_type']){
-      $all_content = str_replace("[promo_type]", $maparray['promo_type'], $all_content);
-    }
+    $all_content = str_replace("[promo_type]", $maparray['promo_type'], $all_content);
+
     $all_content = str_replace("[place_id]", $maparray['place']->place_id, $all_content);
     $all_content = str_replace("[place_name]", $maparray['place']->place_name, $all_content);
     $all_content = str_replace("[map_name]", $maparray['place']->map_name, $all_content);
