@@ -327,16 +327,17 @@ class PagesController extends Controller
 
         // send mail
         if($request->user_promo != null){
-          $Code = $request->user_promo;
+          echo "hola";
+/*           $Code = $request->user_promo;
         //check what's the type of the promo code in the data base
           $promoType = PromoCode::where('promocode', $Code)->first();
           $Promo = $promoType->promo_type;      
           if($Promo == "1"){
             $Promo = "Subscription";  
-          }
-        }else{
+          } */
+        }/* else{
           echo "hola";
-        }
+        } */
         var_dump($Promo);die();
 
         $map_coods = Bigmapmapping::orderBy('id')->get();
