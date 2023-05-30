@@ -52,22 +52,22 @@
                           <div class="col-md-6">
                             <select class="form-control" name="promo_type">
                               @if ($promo->promo_type == "F2")
-								<option value="1">Subscription</option>
+								                <option value="1">Subscription</option>
                                 <option value="F2" selected>{{ __('F2') }}</option>
                                 <option value="F3">{{ __('F3') }}</option>
                                 <option value="F8">{{ __('F8') }}</option>
                               @elseif ($promo->promo_type == "F3")
-								<option value="1">Subscription</option>
+								                <option value="1">Subscription</option>
                                 <option value="F2">{{ __('F2') }}</option>
                                 <option value="F3" selected>{{ __('F3') }}</option>
                                 <option value="F8">{{ __('F8') }}</option>
-							  @elseif ($promo->promo_type == "1")
-								<option value="1" selected>Subscription</option>
+							                @elseif ($promo->promo_type == "1")
+								                <option value="1" selected>Subscription</option>
                                 <option value="F2">{{ __('F2') }}</option>
                                 <option value="F3" >{{ __('F3') }}</option>
                                 <option value="F8">{{ __('F8') }}</option>
                               @else
-								<option value="1">Subscription</option>
+								                <option value="1">Subscription</option>
                                 <option value="F2">{{ __('F2') }}</option>
                                 <option value="F3">{{ __('F3') }}</option>
                                 <option value="F8" selected>{{ __('F8') }}</option>

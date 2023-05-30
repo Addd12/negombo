@@ -326,9 +326,22 @@ class PagesController extends Controller
           $booking->is_approved = 1;
 
         // send mail
+          $Code = $request->user_promo;
+          //If there is no promo code
+          if($Code == null){
+            $Promo = "No Promo Code";
+          }else{
+        //check what's the type of the promo code in the data base
+          $promoType = PromoCode::where('promocode', $Code)->first();
+          $Promo = $promoType->promo_type;      
+          if($Promo == "1"){
+            $Promo = "Subscription";  
+          }
+        }
+
 
         $map_coods = Bigmapmapping::orderBy('id')->get();
-        $maparray = array('place'=> $place, 'map_coods' => $map_coods, 'booking'=> $booking, 'set_admin' => $set_admin);
+        $maparray = array('place'=> $place, 'map_coods' => $map_coods, 'booking'=> $booking, 'set_admin' => $set_admin, 'promo_type' => $Promo);
 
 
         if(Auth::user()){

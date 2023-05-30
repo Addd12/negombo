@@ -83,7 +83,11 @@ class BookingController extends Controller
             }
             $booking->paid_ammount = $place->price;
             $map_coods = Bigmapmapping::orderBy('id')->get();
-            $maparray = array('place'=> $place, 'map_coods' => $map_coods, 'booking'=> $booking, 'set_admin' => $set_admin);
+            
+
+            $Promo = "No Promo Code Used";
+
+            $maparray = array('place'=> $place, 'map_coods' => $map_coods, 'booking'=> $booking, 'set_admin' => $set_admin, 'promo_type' => $Promo);
 
 
             if(Auth::user()){
