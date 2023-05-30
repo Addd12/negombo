@@ -335,7 +335,7 @@ class PagesController extends Controller
         if($Promo == "1"){
             $Promo = "Subscription";
         }
-        if($Code = null){
+        if($Promo == null){
           $Promo = "No Promo Code";
         }
         
