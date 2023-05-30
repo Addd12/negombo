@@ -22,7 +22,16 @@
     $all_content = str_replace("[no_of_babies]", $maparray['booking']->user_no_of_babies, $all_content);
     $all_content = str_replace("[payment_type]", $maparray['booking']->user_payment_type, $all_content);
     $all_content = str_replace("[paid_amount]", $maparray['booking']->paid_ammount, $all_content);
-    $all_content = str_replace("[promo_type]", $maparray['promo_type'], $all_content);
+    if(isset($maparray['promo_type'])){
+      if($maparray['promo_type'] == "1"){
+        $all_content = str_replace("[promo_type]", "Subscription", $all_content);
+      }else{
+        $all_content = str_replace("[promo_type]", $maparray['promo_type'], $all_content);
+      }      
+    }else{
+      $all_content = str_replace("[promo_type]", "No Promo Code", $all_content);
+    }
+    
 
 
     $all_content = str_replace("[place_id]", $maparray['place']->place_id, $all_content);
