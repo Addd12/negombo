@@ -327,9 +327,9 @@ class PagesController extends Controller
 
         // send mail
         
-        $promoCode = $request->user_promo;
+        $Code = $request->user_promo;
         //check what's the type of the promo code in the data base
-        $promoType = PromoCode::get()->find($promoCode);
+        $promoType = PromoCode::where('promo_type', $Code)->first();
         $Promo = $promoType->promo_type;
 
         $map_coods = Bigmapmapping::orderBy('id')->get();

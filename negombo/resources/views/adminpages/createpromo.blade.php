@@ -44,7 +44,7 @@
                             <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Agreement Type') }}</label>
                             <div class="col-md-6">
                               <select class="form-control" id="promo" name="promo_type">
-								  <option value="Subscription" selected>Subscription</option>
+								  <option value="1" selected>Subscription</option>
                                   <option value="F2">{{ __('F2') }}</option>
                                   <option value="F3">{{ __('F3') }}</option>
                                   <option value="F8">{{ __('F8') }}</option>
