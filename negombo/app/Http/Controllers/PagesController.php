@@ -335,7 +335,7 @@ class PagesController extends Controller
             $Promo = "Subscription";  
           }
         }else{
-          $Promo = "No Promo";
+          echo "hola";
         }
         var_dump($Promo);die();
 
