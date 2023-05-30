@@ -329,7 +329,16 @@ class PagesController extends Controller
         
         $Code = $request->user_promo;
         //check what's the type of the promo code in the data base
-        $promoType = PromoCode::where('promo_type', $Code)->first();
+
+        if($Code != null){
+          if( $Code == "1"){
+            $promoType = "Subscription";
+          }else{
+            $promoType = PromoCode::where('promo_type', $Code)->first();
+          }      
+        }else{
+          $promoType = "No Promo Code";
+        }
 
         $map_coods = Bigmapmapping::orderBy('id')->get();
         $maparray = array('place'=> $place, 'map_coods' => $map_coods, 'booking'=> $booking, 'set_admin' => $set_admin, 'promo_type' => $promoType);
