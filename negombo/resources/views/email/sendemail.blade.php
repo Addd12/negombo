@@ -24,9 +24,7 @@
     $all_content = str_replace("[paid_amount]", $maparray['booking']->paid_ammount, $all_content);
     if($maparray['promo_type']){
       $all_content = str_replace("[promo_type]", $maparray['promo_type'], $all_content);
-    }else{
-      $all_content = str_replace("[promo_type]", "No Promo", $all_content);
-    } 
+    }
     $all_content = str_replace("[place_id]", $maparray['place']->place_id, $all_content);
     $all_content = str_replace("[place_name]", $maparray['place']->place_name, $all_content);
     $all_content = str_replace("[map_name]", $maparray['place']->map_name, $all_content);
