@@ -337,6 +337,9 @@ class PagesController extends Controller
           if($Promo == "1"){
             $Promo = "Subscription";  
           }
+          else{
+            $promoType->promo_type;  
+          }
         }
 
 
