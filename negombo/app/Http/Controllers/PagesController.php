@@ -332,8 +332,8 @@ class PagesController extends Controller
             $Promo = "No Promo Code";
           }else{
         //check what's the type of the promo code in the data base
-          $promoType = PromoCode::where('promocode', $Code)->first();
-          $Promo = $promoType->promo_type;   
+          $promoType = PromoCode::select('promo_type')->where('promocode', '=', $Code)->first();
+          $Promo = $promoType;  
           
           // if($Promo == "1"){
           //   $Promo = "Subscription";  
