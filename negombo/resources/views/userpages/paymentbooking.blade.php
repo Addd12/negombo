@@ -19,6 +19,14 @@
                 <br>
                 <table>
                   <tr>
+                      <td colspan="2"><span><strong>{{ __('Zone') }}: </strong></span></td>
+                      <td colspan="2"><span>{{ $maparray['place']->map_name }}</span></td>
+                  </tr>
+                    <tr>
+                      <td colspan="2"><span><strong>{{ __('Place ID') }}: </strong></span></td>
+                      <td colspan="2"><span>{{ $maparray['booking']->place_id }}</span></td>
+                  </tr>
+                  <tr>
                       <td><span><strong>{{ __('Check-In') }}: </strong></span></td>
                       <td><span>{{ date("d/m/Y", strtotime($maparray['booking']->user_checkin)) }}</span></td>
                       <td>&nbsp; &nbsp;<strong>{{ __('Check-Out') }}: </strong></td>
@@ -121,7 +129,7 @@
                 @include('layouts.payment.creditcardformat')
 
               @elseif ($maparray['booking']->user_payment_type=="Entrance")
-                <span><strong>{{ __('Entranced by') }}:</strong>:</span> <span id="_payment_status">{{ Auth::user()->name }}</span>
+                <span><strong>{{ __('Entranced by') }}:</strong></span> <span id="_payment_status">{{ Auth::user()->name }}</span>
                 <br>
                 @include('layouts.payment.bookingdatapassform')
               @elseif ($maparray['booking']->user_payment_type=="Admin")
