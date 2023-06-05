@@ -1,7 +1,10 @@
 @php
+    
 @endphp
 
-<h1>Negombo Booking Confirmation</h1>
+
+
+<h1>Negombo {{__('Booking Confirmation')}}</h1>
 <hr>
 <div class="card">
   <div class="card-body">
