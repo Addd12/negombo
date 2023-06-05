@@ -35,7 +35,7 @@
     "Place Description": "Descrizione Del Luogo",
     "Prices": "Prezzi",
     "Look at the price table": "Guarda la tabella dei prezzi",
-    "Price to Pay": "Prezzo Pagato",
+    "Price to pay": "Prezzo da pagare",
 
     "Prices from 31st July to 29th August": "Dal 31 Luglio al 29 Agosto",
     "Prices from August 30 to closing": "Prezzi dal 30 agosto a chiusura",
@@ -180,5 +180,6 @@
     "Prices from opening to 29th July and from 5th September until closing": "Dall'apertura al 29 Luglio - Dal 5 Settembre alla chiusura", 
     "Prices from 30th July to 4th September":"Dal 30 Luglio al 4 Settembre",
     "Availability for": "Disponibilità dal", 
-    "to": "al"
+    "to": "al",
+    "Zone": "Zona"
 }
