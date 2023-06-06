@@ -334,6 +334,9 @@ class AdminPagesController extends Controller
       $set_admin->adult2_1baby_price = $request->adult2_1baby_price;
       $set_admin->adult2_2baby_price = $request->adult2_2baby_price;
       $set_admin->adult3_1baby_price = $request->adult3_1baby_price;
+      $set_admin->adult3_2baby_price = $request->adult3_2baby_price;
+      $set_admin->adult4_1baby_price = $request->adult4_1baby_price;
+
       // for low season
       $set_admin->lw_adult1_price = $request->lw_adult1_price;
       $set_admin->lw_adult2_price = $request->lw_adult2_price;
@@ -345,6 +348,11 @@ class AdminPagesController extends Controller
       $set_admin->lw_adult2_1baby_price = $request->lw_adult2_1baby_price;
       $set_admin->lw_adult2_2baby_price = $request->lw_adult2_2baby_price;
       $set_admin->lw_adult3_1baby_price = $request->lw_adult3_1baby_price;
+      $set_admin->lw_adult3_2baby_price = $request->lw_adult3_2baby_price;
+      $set_admin->lw_adult4_1baby_price = $request->lw_adult4_1baby_price;
+
+
+
 
       $set_admin->save();
 
