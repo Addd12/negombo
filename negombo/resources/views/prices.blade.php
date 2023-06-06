@@ -106,23 +106,23 @@
                                 <td>1 {{__('beach umbrella')}},
                                     2 {{__('sunbeds')}}, 2 {{__('deckchair')}}</td>
                             </tr>
-<!--                             
+                            
                             <tr>
                                 <td><strong>3 {{ __('Adults') }},2 {{ __('Babies') }}: </strong></td>
                                 <td>€ {{$maparray["set_admin"]->lw_adult3_2baby_price}},00</td>
-                                <td>€ 102,00</td>
-                                <td>€ 84,00</td>
+                                {{-- <td>€ 102,00</td> --}}
+                                {{-- <td>€ 84,00</td> --}}
                                 <td>1 {{__('beach umbrella')}},
                                     2 {{__('sunbeds')}}, 2 {{__('deckchair')}}</td>
                             </tr>
                             <tr>
                                 <td><strong>4 {{ __('Adults') }},1 {{ __('Baby') }}: </strong></td>
                                 <td>€ {{$maparray["set_admin"]->lw_adult4_1baby_price}},00</td>
-                                <td>€ 102,00</td>
-                                <td>€ 84,00</td>
+                                {{-- <td>€ 102,00</td> --}}
+                                {{-- <td>€ 84,00</td> --}}
                                 <td>1 {{__('beach umbrella')}},
                                     2 {{__('sunbeds')}}, 2 {{__('deckchair')}}</td>
-                            </tr> -->
+                            </tr> 
 
                             {{--                            Price per kid--}}
                             <tr>
@@ -246,6 +246,22 @@
                                 <td>1 {{__('beach umbrella')}},
                                     2 {{__('sunbeds')}}, 2 {{__('deckchair')}}</td>
                             </tr>
+                            <tr>
+                                <td><strong>3 {{ __('Adults') }},2 {{ __('Babies') }}: </strong></td>
+                                <td>€ {{$maparray["set_admin"]->adult3_2baby_price}},00</td>
+                                {{-- <td>€ 102,00</td> --}}
+                                {{-- <td>€ 84,00</td> --}}
+                                <td>1 {{__('beach umbrella')}},
+                                    2 {{__('sunbeds')}}, 2 {{__('deckchair')}}</td>
+                            </tr>
+                            <tr>
+                                <td><strong>4 {{ __('Adults') }},1 {{ __('Baby') }}: </strong></td>
+                                <td>€ {{$maparray["set_admin"]->adult4_1baby_price}},00</td>
+                                {{-- <td>€ 102,00</td> --}}
+                                {{-- <td>€ 84,00</td> --}}
+                                <td>1 {{__('beach umbrella')}},
+                                    2 {{__('sunbeds')}}, 2 {{__('deckchair')}}</td>
+                            </tr> 
 
                             {{--Price per kid--}}
                             <tr>

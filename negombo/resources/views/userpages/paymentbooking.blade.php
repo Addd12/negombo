@@ -19,6 +19,14 @@
                 <br>
                 <table>
                   <tr>
+                      <td colspan="2"><span><strong>{{ __('Zone') }}: </strong></span></td>
+                      <td colspan="2"><span>{{ $maparray['place']->map_name }}</span></td>
+                  </tr>
+                    <tr>
+                      <td colspan="2"><span><strong>{{ __('Place ID') }}: </strong></span></td>
+                      <td colspan="2"><span>{{ $maparray['booking']->place_id }}</span></td>
+                  </tr>
+                  <tr>
                       <td><span><strong>{{ __('Check-In') }}: </strong></span></td>
                       <td><span>{{ date("d/m/Y", strtotime($maparray['booking']->user_checkin)) }}</span></td>
                       <td>&nbsp; &nbsp;<strong>{{ __('Check-Out') }}: </strong></td>
@@ -40,57 +48,19 @@
                       <td colspan="2"><span><strong>{{ __('Number of adults') }}: </strong></span></td>
                       <td colspan="2"><span>{{ $maparray['booking']->user_no_of_guest }}</span></td>
                   </tr>
-                  @isset($maparray['booking']->guest_surname1)
-                    <tr>
-                      <td colspan="2"><span><strong>{{ __('Adult') }} {{ __('Surname') }} 1: </strong></span></td>
-                      <td colspan="2"><span>{{ $maparray['booking']->guest_surname1 }}</span></td>
-                    </tr>
-                  @endisset
-                  @isset($maparray['booking']->guest_surname2)
-                    <tr>
-                      <td colspan="2"><span><strong>{{ __('Adult') }} {{ __('Surname') }} 2: </strong></span></td>
-                      <td colspan="2"><span>{{ $maparray['booking']->guest_surname2 }}</span></td>
-                    </tr>
-                  @endisset
-                  @isset($maparray['booking']->guest_surname3)
-                    <tr>
-                      <td colspan="2"><span><strong>{{ __('Adult') }} {{ __('Surname') }} 3: </strong></span></td>
-                      <td colspan="2"><span>{{ $maparray['booking']->guest_surname3 }}</span></td>
-                    </tr>
-                  @endisset
+                  <tr>
+                    <td colspan="2"><span><strong>{{ __('Number of babies') }}: </strong></span></td>
+                    <td colspan="2"><span>{{ $maparray['booking']->user_no_of_babies }}</span></td>
+                  </tr>
 
-
-                    <tr>
-                      <td colspan="2"><span><strong>{{ __('Number of babies') }}: </strong></span></td>
-                      <td colspan="2"><span>{{ $maparray['booking']->user_no_of_babies }}</span></td>
-                    </tr>
-
-                    @isset($maparray['booking']->baby_surname1)
-                      <tr>
-                        <td colspan="2"><span><strong>{{ __('Baby') }} {{ __('Surname') }} 1: </strong></span></td>
-                        <td colspan="2"><span>{{ $maparray['booking']->baby_surname1 }}</span></td>
-                      </tr>
-                    @endisset
-                    @isset($maparray['booking']->baby_surname2)
-                      <tr>
-                        <td colspan="2"><span><strong>{{ __('Baby') }} {{ __('Surname') }} 2: </strong></span></td>
-                        <td colspan="2"><span>{{ $maparray['booking']->baby_surname2 }}</span></td>
-                      </tr>
-                    @endisset
-                    @isset($maparray['booking']->baby_surname3)
-                      <tr>
-                        <td colspan="2"><span><strong>{{ __('Baby') }} {{ __('Surname') }} 3: </strong></span></td>
-                        <td colspan="2"><span>{{ $maparray['booking']->baby_surname3 }}</span></td>
-                      </tr>
-                    @endisset
-                    <tr>
-                      <td colspan="2"><span><strong>{{__('Price to pay')}}: </strong></span></td>
-                      <td colspan="2"><span>{{ $maparray['place']->price }} €</span></td>
-                    </tr>
-                    <tr>
-                      <td colspan="2"><span><strong>{{ __('Payment Type') }}: </strong></span></td>
-                      <td colspan="2"><span>{{ $maparray['booking']->user_payment_type }}</span></td>
-                    </tr>
+                  <tr>
+                    <td colspan="2"><span><strong>{{__('Price to pay')}}: </strong></span></td>
+                    <td colspan="2"><span>{{ $maparray['place']->price }} €</span></td>
+                  </tr>
+                  <tr>
+                    <td colspan="2"><span><strong>{{ __('Payment Type') }}: </strong></span></td>
+                    <td colspan="2"><span>{{ $maparray['booking']->user_payment_type }}</span></td>
+                  </tr>
                 </table>
 
 
@@ -121,11 +91,11 @@
                 @include('layouts.payment.creditcardformat')
 
               @elseif ($maparray['booking']->user_payment_type=="Entrance")
-                <span><strong>{{ __('Entranced by') }}:</strong>:</span> <span id="_payment_status">{{ Auth::user()->name }}</span>
+                <span><strong>{{ __('Entranced by') }}:</strong></span> <span id="_payment_status">{{ Auth::user()->name }}</span>
                 <br>
                 @include('layouts.payment.bookingdatapassform')
               @elseif ($maparray['booking']->user_payment_type=="Admin")
-                <span><strong>{{ __('Booked by') }}:</strong>:</span> <span id="_payment_status">{{ Auth::user()->name }}</span>
+                <span><strong>{{ __('Booked by') }}:</strong></span> <span id="_payment_status">{{ Auth::user()->name }}</span>
                 <br>
                 @include('layouts.payment.bookingdatapassform')
               @elseif ($maparray['booking']->user_payment_type=="Stripe")
