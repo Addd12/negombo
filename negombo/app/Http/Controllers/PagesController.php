@@ -9,11 +9,13 @@ use Illuminate\Database\QueryException;
 use App\Bigmapmapping;
 use App\Place;
 use App\Booking;
+use App\User;
 use App\TempBooking;
 use App\PromoCode;
 use App\TempbookingCard;
 use App\SettingAdmin;
 use App\Mail\SendMail;
+
 
 use DateTime;
 
@@ -216,7 +218,7 @@ class PagesController extends Controller
         // \Stripe\Stripe::setApiKey ( 'sk_test_51GzT6ABiRTh77KFmRi2XDmLqkgNpgzec0HQt3txM0dFT3qqYUnwQXiXJThbThOVxIAkZElfkPbyHEkYB7qAV7dyV00SkHMtB2j' );
       \Stripe\Stripe::setApiKey('sk_test_51GzT6ABiRTh77KFmRi2XDmLqkgNpgzec0HQt3txM0dFT3qqYUnwQXiXJThbThOVxIAkZElfkPbyHEkYB7qAV7dyV00SkHMtB2j');
 
-      $token = $request->stripeToken;
+      $token = $request->stripeToken; 
       try {
         // return $booking->paid_ammount;
         $charge = \Stripe\Charge::create([
@@ -457,7 +459,7 @@ class PagesController extends Controller
 
 
     public function confirmbookingpaymentpaypal($tracking_id){
-        $tracking_id = trim($tracking_id);
+        $tracking_id = trim($tracking_id); 
         $booking = Booking::where('user_booking_tracking_id', $tracking_id)->first();
 
         if(!isset($booking)){
@@ -474,6 +476,7 @@ class PagesController extends Controller
     public function viewsmallplace($map_name, Request $req){
       $set_admin = SettingAdmin::orderBy('id')->first();
       $map_coods = Bigmapmapping::orderBy('id')->get();
+      $user = User::orderBy('id')->first();
       $checkin_date = $req->t_start;
       if($checkin_date=="null")
         return redirect()->route('user.viewsmallplace', $map_name);
@@ -514,18 +517,18 @@ class PagesController extends Controller
           $err_msg= "error";
           // return redirect()->route('user.viewsmallplace', $map_name)->with('err_msg', $err_msg);
           $maparray = array('map_name' => $map_name, 'map_coods' => $map_coods, 'places'=> $places, 'set_admin'=> $set_admin, 'err_msg' => $err_msg);
-          return view('userpages.smallmap')->with('maparray', $maparray);
+          return view('userpages.smallmap')->with('maparray', $maparray)->with('user', $user);
         }
       }else if(number_format($req->no_of_day)>$set_admin->max_no_days){
         $err_msg= "error";
         // return redirect()->route('user.viewsmallplace', $map_name)->with('err_msg', $err_msg);
         $maparray = array('map_name' => $map_name, 'map_coods' => $map_coods, 'places'=> $places, 'set_admin'=> $set_admin, 'err_msg' => $err_msg);
-        return view('userpages.smallmap')->with('maparray', $maparray);
+        return view('userpages.smallmap')->with('maparray', $maparray)->with('user', $user);
 
       }
 
       $maparray = array('map_name' => $map_name, 'map_coods' => $map_coods, 'places'=> $places, 'checkin_date' => $checkin_date, 'checkout_date' => $checkout_date, 'set_admin'=> $set_admin);
-      return view('userpages.smallmap')->with('maparray', $maparray);
+      return view('userpages.smallmap')->with('maparray', $maparray)->with('user', $user);
     }
 
 }
