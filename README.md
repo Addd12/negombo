@@ -85,12 +85,12 @@ _Below is an example of how you can instruct your audience on installing and set
 
 1. Clone the repo
    ```sh
-   git clone https://github.com/Serh1/negombo-master.git
+   git clone https://github.com/ExtramusIT/negombo-beta.git
    ``` 
 2. Create new ".env" file inside the "negombo" directory.
 3. Copy and paste the bellow code configuration.
    ```sh
-    APP_NAME="Spiaggia"
+    APP_NAME="Negombo"
     APP_ENV=local
     APP_KEY=base64:tadOvuTsXkCu3HVlW+yHoZXZFffyqK6nylTdsAtsSGg=
     APP_DEBUG=t/ue
@@ -113,12 +113,12 @@ _Below is an example of how you can instruct your audience on installing and set
     REDIS_PASSWORD=null
     REDIS_PORT=6379
     MAIL_MAILER=smtp
-    MAIL_HOST=digitall.it
-    MAIL_PORT=25
-    MAIL_USERNAME= no-replay@spiaggiasanmontano.it"
-    MAIL_PASSWORD="0*Wpb/30"
+    MAIL_HOST=sandbox.smtp.mailtrap.io
+    MAIL_PORT=2525
+    MAIL_USERNAME="username"
+    MAIL_PASSWORD="password"
     MAIL_ENCRYPTION=tls
-    MAIL_FROM_ADDRESS= no-replay@spiaggiasanmontano.it"
+    MAIL_FROM_ADDRESS= "you@extramus.eu"
     MAIL_FROM_NAME="${APP_NAME}"
     AWS_ACCESS_KEY_ID=
     AWS_SECRET_ACCESS_KEY=
@@ -140,7 +140,7 @@ _Below is an example of how you can instruct your audience on installing and set
 
 7. Website is available at
   ```sh
-  http://localhost/negombo-master/
+ http://localhost/negombo-beta/
   ```
 
 <p align="right">(<a href="#top">back to top</a>)</p>
@@ -186,9 +186,6 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 <!-- CONTACT -->
 ## Contact
 
-Mateiu Sergiu - s.mateiu@yahoo.com
-
-Project Link: [https://github.com/Serh1/negombo-master](https://github.com/Serh1/negombo-master)
 
 
 <p align="right">(<a href="#top">back to top</a>)</p>

@@ -37,7 +37,7 @@
                         </li>
                         <br><br>
                     </noscript>
-                    <span><strong>{{ __('Arrival day') }}:</strong></span>
+                        <span><strong>{{ __('Arrival day') }}:</strong></span>
                         <div class="row align-items-end">
                             {{-- <span id="tdatepik" class="t-check-in"></span> --}}
                             {{-- <span class="t-check-out"></span> --}}
@@ -157,10 +157,10 @@
                                 @foreach ($maparray['places'] as $place)
 
                                     @if ($place->status==0)
-                                        @php                                           
+                                        @php
                                         $makestr = '+'.($maparray["set_admin"]->max_no_days)." day";
-                                            if( strtotime($maparray['checkin_date']) > strtotime($makestr) ){                                           
-                                        @endphp                                                
+                                            if( strtotime($maparray['checkin_date']) > strtotime($makestr) ){
+                                        @endphp
                                                 <a onclick="return false;" href="" id="{{ 'mapmarkgy'.$ind }}"
                                            class="mapmarkgycls"
                                            style="left: {{ $place->co_xl-15 }}px; top:{{ $place->co_yl-5 }}px;">{{ $place->place_id }}</a>
@@ -187,7 +187,7 @@
                                         </script>
                                         @php
                                             }
-                                        @endphp                                
+                                        @endphp
                                     @endif
                                     @if ($place->status== -1)
                                         {{-- menually control colors for links --}}
