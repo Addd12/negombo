@@ -59,7 +59,7 @@
                                   $endday = date("Y-m-d", strtotime($makestr));
                                 }else{
                                   // for non-logged in user
-                                  $makestr = '+'.($maparray["set_admin"]->max_no_days+4)." day";
+                                  $makestr = '+'.($maparray["set_admin"]->max_no_days)." day";
 
                                 //  dd($makestr);
 
