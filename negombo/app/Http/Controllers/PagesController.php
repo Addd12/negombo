@@ -9,11 +9,13 @@ use Illuminate\Database\QueryException;
 use App\Bigmapmapping;
 use App\Place;
 use App\Booking;
+use App\User;
 use App\TempBooking;
 use App\PromoCode;
 use App\TempbookingCard;
 use App\SettingAdmin;
 use App\Mail\SendMail;
+
 
 use DateTime;
 
@@ -85,7 +87,41 @@ class PagesController extends Controller
 
  public function createbooking($place_id, $checkin, $checkout, $error_msg){
 
-      if(Auth::user()){
+        if(Auth::check() && Auth::user()->role == "admin"){
+          $booking = new Booking;
+        $booking->place_id = $place_id;
+        $booking->user_checkin = $checkin;
+        $booking->user_checkout = $checkout;
+        $t = time();
+        //make valid URL
+        $set_admin = new SettingAdmin;
+        // $set_admin->bookingURLvalidation($checkin, $checkout);
+        // return;
+        $set_admin->max_no_days = 10;
+        // if(!$set_admin->bookingURLvalidation($checkin, $checkout)){
+        //   return redirect()->route('error.404');
+        // }
+
+
+
+        // if(!$booking->check_availability()){
+        //   return redirect()->route('error.404');
+        // }
+
+        //Engaged the place for 15 min
+        $temp_book = new TempBooking;
+        $temp_book->makeEngaged($place_id, $checkin);
+
+        $map_coods = Bigmapmapping::orderBy('id')->get();
+        $place = Place::where('place_id',$place_id)->first();
+        $set_admin = SettingAdmin::orderBy('id')->first();
+        $place->price = $set_admin->adult1_price;
+        $maparray = array('map_coods' => $map_coods, 'place' => $place, 'checkin' => $checkin, 'checkout'=> $checkout, 'set_admin' => $set_admin, 'error_msg'=> $error_msg);
+        return view('userpages.bookingplace')->with('maparray', $maparray);
+          
+        }
+  
+        if(Auth::user()){
         $booking = new Booking;
         $booking->place_id = $place_id;
         $booking->user_checkin = $checkin;
@@ -216,7 +252,7 @@ class PagesController extends Controller
         // \Stripe\Stripe::setApiKey ( 'sk_test_51GzT6ABiRTh77KFmRi2XDmLqkgNpgzec0HQt3txM0dFT3qqYUnwQXiXJThbThOVxIAkZElfkPbyHEkYB7qAV7dyV00SkHMtB2j' );
       \Stripe\Stripe::setApiKey('sk_test_51GzT6ABiRTh77KFmRi2XDmLqkgNpgzec0HQt3txM0dFT3qqYUnwQXiXJThbThOVxIAkZElfkPbyHEkYB7qAV7dyV00SkHMtB2j');
 
-      $token = $request->stripeToken;
+      $token = $request->stripeToken; 
       try {
         // return $booking->paid_ammount;
         $charge = \Stripe\Charge::create([
@@ -422,7 +458,6 @@ class PagesController extends Controller
       if($promoCode->checkingValidity($promo, $place->map_name, $numberofdays) && ($promoCode->checkUsers($promo, $booking->user_no_of_guest, $booking->user_no_of_babies) && ($promoCode->checkPromoValid($promo)))){
 
         $booking->user_promo = $promo;
-
         $discount = $promoCode->discountCalculate($booking->user_promo, $place->price);
         $place->price = $place->price - $discount;
         $booking->paid_ammount = $place->price;
@@ -437,27 +472,36 @@ class PagesController extends Controller
         $booking->user_promo = "0";
       }
 
-      if($booking->check_availability()){
-        $map_coods = Bigmapmapping::orderBy('id')->get();
-        $maparray = array('place'=> $place, 'map_coods' => $map_coods, 'booking'=> $booking, 'discount'=> $discount);
-        if($booking->user_payment_type == "Credit Card"){
-          $booking->paid_ammount = $place->price;
-			    if($booking->paid_ammount == 0)
-            return redirect()->route('user.createbooking', ['place_id' => $booking->place_id, 'checkin' => $booking->user_checkin, 'checkout' => $booking->user_checkout, 'error_msg' => 1]);         			    
-          $paymentCard = $booking->paywithCard(floatval($booking->paid_ammount));
-          $temp_cardPayment = new TempbookingCard;
-          $temp_cardPayment->loadAndSavedata($booking, $paymentCard['paymentID']);
-          $maparray = array('place'=> $place, 'map_coods' => $map_coods, 'booking'=> $booking, 'discount'=> $discount, 'paymentCardUrl' => $paymentCard['redirect']);
-        }
-        return view('userpages.paymentbooking')->with('maparray', $maparray);
+      if($booking->check_availability())
+      {
+          $map_coods = Bigmapmapping::orderBy('id')->get();
+          $maparray = array('place'=> $place, 'map_coods' => $map_coods, 'booking'=> $booking, 'discount'=> $discount);
+          if($booking->user_payment_type == "Credit Card")
+          {
+            $booking->paid_ammount = $place->price;
+            if($booking->paid_ammount == 0)
+              return redirect()->route('user.createbooking', ['place_id' => $booking->place_id, 'checkin' => $booking->user_checkin, 'checkout' => $booking->user_checkout, 'error_msg' => 1]);         			    
+            $paymentCard = $booking->paywithCard(floatval($booking->paid_ammount));
+            $temp_cardPayment = new TempbookingCard;
+            $temp_cardPayment->loadAndSavedata($booking, $paymentCard['paymentID']);
+            $maparray = array('place'=> $place, 'map_coods' => $map_coods, 'booking'=> $booking, 'discount'=> $discount, 'paymentCardUrl' => $paymentCard['redirect']);
+          }
+
+           /* Add url( url from bookings page) of user unique booking details(place_id,checkin_date,checkout_date) to maparay
+           *  This will be used to redirect user to booking page with their unique booking details  */
+           $maparray['bookings_url'] = url()->previous();
+           session(['maparray'=> $maparray]); //save maparray data in session
+
+          return view('userpages.paymentbooking')->with('maparray', $maparray);
       }else{
         return redirect()->route('error.404');
       }
     }
 
 
+
     public function confirmbookingpaymentpaypal($tracking_id){
-        $tracking_id = trim($tracking_id);
+        $tracking_id = trim($tracking_id); 
         $booking = Booking::where('user_booking_tracking_id', $tracking_id)->first();
 
         if(!isset($booking)){
@@ -468,64 +512,75 @@ class PagesController extends Controller
         $set_admin = SettingAdmin::orderBy('id')->first();
         $maparray = array('place'=> $place, 'map_coods' => $map_coods, 'booking'=> $booking, 'set_admin' => $set_admin);
 
+       
         return view('userpages.confirmbooking')->with('maparray', $maparray);
     }
 
-    public function viewsmallplace($map_name, Request $req){
-      $set_admin = SettingAdmin::orderBy('id')->first();
-      $map_coods = Bigmapmapping::orderBy('id')->get();
-      $checkin_date = $req->t_start;
-      if($checkin_date=="null")
-        return redirect()->route('user.viewsmallplace', $map_name);
-      $nmofdays = ($req->no_of_day)-1;
 
-      if(number_format($req->no_of_day)<=0)
-        $nmofdays = 0;
-      $checkout_date = $checkin_date;
-      if(isset($req->no_of_day)){
-        $date = $checkin_date;
-        $date = strtotime($date);
-        $date = strtotime("+".$nmofdays." day", $date);
-        $checkout_date = date('Y-m-d', $date);
-      }
+    public function viewsmallplace($map_name, Request $req)
+    {      
+        $set_admin = SettingAdmin::orderBy('id')->first();
+        $map_coods = Bigmapmapping::orderBy('id')->get();
+        $checkin_date = $req->t_start;
+        if($checkin_date=="null")
+          return redirect()->route('user.viewsmallplace', $map_name);
+        $nmofdays = ($req->no_of_day)-1;
 
-      //
-      // $map_coods = Bigmapmapping::orderBy('id')->get();
-      $all_places = Place::where('map_name', $map_name)->get();
-      $places = array();
-      if(isset($req->t_start)){
-        $booking = new Booking;
-        foreach ($all_places as $place) {
-          if($place->status == -1){
-            array_push($places, $place);
-            continue;
-          }
-          $place->status = 0;
-          $place->status = $booking->place_is_available($place->place_id, $checkin_date, $checkout_date);
-          $place->status = $booking->place_is_available_subs($place->place_id, $checkin_date, $checkout_date, $place->status);
-
-          array_push($places, $place);
+        if(number_format($req->no_of_day)<=0)
+          $nmofdays = 0;
+        $checkout_date = $checkin_date;
+        if(isset($req->no_of_day))
+        {
+          $date = $checkin_date;
+          $date = strtotime($date);
+          $date = strtotime("+".$nmofdays." day", $date);
+          $checkout_date = date('Y-m-d', $date);
         }
-      }else{
-        $places = $all_places;
-      }
-      if(Auth::user()){
-        if(number_format($req->no_of_day)>$set_admin->max_no_days && Auth::user()->role != "admin"){
+
+        //
+        // $map_coods = Bigmapmapping::orderBy('id')->get();
+        $all_places = Place::where('map_name', $map_name)->get();
+        $places = array();
+        if(isset($req->t_start))
+        {
+          $booking = new Booking;
+          foreach ($all_places as $place)
+          {
+            if($place->status == -1)
+            {
+              
+              array_push($places, $place);
+              continue;
+            }
+            // echo "after initial status check -- ".$place->status."<br>";
+            $place->status = 0;
+            $place->status = $booking->place_is_available($place->place_id, $checkin_date, $checkout_date);
+            // $place->status = $booking->place_is_available_subs($place->place_id, $checkin_date, $checkout_date, $place->status);
+
+            array_push($places, $place);
+          }
+        }else{
+          $places = $all_places;
+        }
+
+        if(Auth::user())
+        {
+          if(number_format($req->no_of_day)>$set_admin->max_no_days && Auth::user()->role != "admin"){
+            $err_msg= "error";
+            // return redirect()->route('user.viewsmallplace', $map_name)->with('err_msg', $err_msg);
+            $maparray = array('map_name' => $map_name, 'map_coods' => $map_coods, 'places'=> $places, 'set_admin'=> $set_admin, 'err_msg' => $err_msg);
+            return view('userpages.smallmap')->with('maparray', $maparray);
+          }
+        }else if(number_format($req->no_of_day)>$set_admin->max_no_days){
           $err_msg= "error";
           // return redirect()->route('user.viewsmallplace', $map_name)->with('err_msg', $err_msg);
           $maparray = array('map_name' => $map_name, 'map_coods' => $map_coods, 'places'=> $places, 'set_admin'=> $set_admin, 'err_msg' => $err_msg);
           return view('userpages.smallmap')->with('maparray', $maparray);
+
         }
-      }else if(number_format($req->no_of_day)>$set_admin->max_no_days){
-        $err_msg= "error";
-        // return redirect()->route('user.viewsmallplace', $map_name)->with('err_msg', $err_msg);
-        $maparray = array('map_name' => $map_name, 'map_coods' => $map_coods, 'places'=> $places, 'set_admin'=> $set_admin, 'err_msg' => $err_msg);
+
+        $maparray = array('map_name' => $map_name, 'map_coods' => $map_coods, 'places'=> $places, 'checkin_date' => $checkin_date, 'checkout_date' => $checkout_date, 'set_admin'=> $set_admin);
         return view('userpages.smallmap')->with('maparray', $maparray);
-
-      }
-
-      $maparray = array('map_name' => $map_name, 'map_coods' => $map_coods, 'places'=> $places, 'checkin_date' => $checkin_date, 'checkout_date' => $checkout_date, 'set_admin'=> $set_admin);
-      return view('userpages.smallmap')->with('maparray', $maparray);
     }
 
 }
