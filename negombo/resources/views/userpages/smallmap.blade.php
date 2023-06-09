@@ -185,6 +185,7 @@
     @foreach ($maparray['places'] as $place)
         @if( Auth::check() &&  Auth::user()->role == "admin")
             @php
+            $makestr = '+365 day';
             $place->status = 0;
             @endphp
             <a href="{{ route('user.createbooking',  ['place_id' => $place->place_id, 'checkin' => $maparray['checkin_date'], 'checkout' => $maparray['checkout_date'], 'error_msg' => 0]) }}"
