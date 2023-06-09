@@ -113,15 +113,15 @@ class BookingController extends Controller
               //redirect to create bookings page with user booking details
               $maparray = request()->session()->get('maparray'); //get data from session
               $url = $maparray['bookings_url']; // get user bookings url from maparray
-              return redirect($url);
-          }
-
-        }else{
-
+              return redirect($url)->with('bookinErrorMsg',"You cancelled your booking payment. Please refill the following data!");
+            }
+            
+          }else{
+            
             //redirect to create bookings page with user booking details
-              $maparray = request()->session()->get('maparray'); //get data from session
-              $url = $maparray['bookings_url']; // get user bookings url from maparray
-              return redirect($url);
+            $maparray = request()->session()->get('maparray'); //get data from session
+            $url = $maparray['bookings_url']; // get user bookings url from maparray
+            return redirect($url)->with('bookinErrorMsg',"You cancelled your booking payment. Please refill the following data!");
       }
         // return view('layouts.modalLayout.cardpaymentnotify');
     }
