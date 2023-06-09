@@ -167,13 +167,15 @@ class Booking extends Model
     public function paywithCard($place_price){
       // implementation of api
       $unicredit = new UnicreditApi();
-       //$args = array('serverURL' => 'https://testeps.netswgroup.it/UNI_CG_SERVICES/services',
-      $args = array('serverURL' => 'https://pagamenti.unicredit.it/UNI_CG_SERVICES/services',
+      $args = array('serverURL' => 'https://testeps.netswgroup.it/UNI_CG_SERVICES/services',
+      //$args = array('serverURL' => 'https://pagamenti.unicredit.it/UNI_CG_SERVICES/services',
                     'timeout' => 15000,
-                    'tid' => '30687521',
-                    'kSig' => '3j0i3b0c0f8g5b1j0j0h3j0i3b0j0j0h',
-                    //'tid' => 'UNI_DEDICATED',
-      				      //'kSig' => 'UNI_TESTKEY',
+                    //'tid' => '30687521',
+                    //'kSig' => '3j0i3b0c0f8g5b1j0j0h3j0i3b0j0j0h',
+                    
+                    'tid' => 'UNI_DEDICATED',
+      				      'kSig' => 'UNI_TESTKEY',
+
                     'trType' => 'PURCHASE',
                     'currencyCode' => 'EUR',
                     'langID' => 'EN',
@@ -185,10 +187,10 @@ class Booking extends Model
                     'addInfo3' => "Check-out: ".$this->user_checkout,
                     'addInfo4' => "NumOfAdults: ".$this->user_no_of_guest,
                     'addInfo5' => "Phone: ".$this->user_phone,
-                    'notifyURL' => 'http://prenotazioni.negombo.it/booking/confirm/card/'.$this->user_booking_tracking_id,
-                    'errorURL' => 'http://prenotazioni.negombo.it/404',
-                     //'notifyURL' => 'http://127.0.0.1:8000/booking/confirm/card/'.$this->user_booking_tracking_id,
-                     //'errorURL' => 'http://127.0.0.1:8000/404',
+                    //'notifyURL' => 'http://prenotazioni.negombo.it/booking/confirm/card/'.$this->user_booking_tracking_id,
+                    //'errorURL' => 'http://prenotazioni.negombo.it/404',
+                    'notifyURL' => 'http://127.0.0.1:8000/booking/confirm/card/'.$this->user_booking_tracking_id,
+                    'errorURL' => 'http://127.0.0.1:8000/404',
                     );
       $redirect = $unicredit->init($args);
       // echo $unicredit->getPaymentID();
@@ -199,13 +201,13 @@ class Booking extends Model
 
     public function verifyPayment($paymentID){
       $unicredit = new UnicreditApi();
-      //$args = array('serverURL' => 'https://testeps.netswgroup.it/UNI_CG_SERVICES/services',
-      $args = array('serverURL' => 'https://pagamenti.unicredit.it/UNI_CG_SERVICES/services',
+      $args = array('serverURL' => 'https://testeps.netswgroup.it/UNI_CG_SERVICES/services',
+      //$args = array('serverURL' => 'https://pagamenti.unicredit.it/UNI_CG_SERVICES/services',
                     'timeout' => 15000,
-                    'tid' => '30687521',
-                    'kSig' => '3j0i3b0c0f8g5b1j0j0h3j0i3b0j0j0h',
-                    //'tid' => 'UNI_DEDICATED',
-      				      //'kSig' => 'UNI_TESTKEY',
+                    //'tid' => '30687521',
+                    //'kSig' => '3j0i3b0c0f8g5b1j0j0h3j0i3b0j0j0h',
+                    'tid' => 'UNI_DEDICATED',
+      				      'kSig' => 'UNI_TESTKEY',
                     'shopID' => $this->user_booking_tracking_id,
                     );
       $response = $unicredit->verify($paymentID, $args);

@@ -11,7 +11,11 @@ class SettingAdmin extends Model
     //
     public function calculatePrice($checkin, $checkout, $numOfadults, $numOfbabies){
       $numOfdays = date_diff(date_create($checkin), date_create($checkout));
+      if($numOfdays->m >= 1){
+        $numOfdays->d = $numOfdays->days;
+      }
       $numOfdays->d = $numOfdays->d+1;
+      //ddd($numOfdays);
       $price_tm = 0;
       for ($counter=0; $counter < $numOfdays->d; $counter++) {
           if(strtotime($checkin)>=strtotime($this->hi_season_start) && strtotime($checkin)<=strtotime($this->hi_season_end)){
@@ -66,7 +70,7 @@ class SettingAdmin extends Model
           $checkin = $nextday;
       }
 
-
+      //ddd($checkin);
       return $price_tm;
     }
 
