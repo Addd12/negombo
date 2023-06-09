@@ -3,6 +3,13 @@
 @section('section')
   <div class="container-fluid padding20">
     <div class="row">
+      @if(session()->has('bookinErrorMsg'))
+        <div class="col alert alert-danger ">
+          {{  __( session('bookinErrorMsg'))  }}
+        </div>
+      @endif
+    </div>
+    <div class="row">
       <div class="col-sm-1">
       </div>
       <div class="col-sm-4">
