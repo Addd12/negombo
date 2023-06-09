@@ -16,6 +16,8 @@ use App\TempbookingCard;
 
 
 use DateTime;
+use Illuminate\Http\Client\Request as ClientRequest;
+
 class BookingController extends Controller
 {
     //
@@ -110,7 +112,11 @@ class BookingController extends Controller
         }
 
       }else{
-        return view('error404')->with('err_msg', "Your payment is not successful and Cookies are cleared, Contact With Admin.");
+
+            //redirect to create bookings page with user booking details
+              $maparray = request()->session()->get('maparray'); //get data from session
+              $url = $maparray['bookings_url']; // get user bookings url from maparray
+              return redirect($url);
       }
         // return view('layouts.modalLayout.cardpaymentnotify');
     }

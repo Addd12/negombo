@@ -99,7 +99,6 @@
                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             {{-- {{ Config::get('languages')[App::getLocale()] }} --}}
                             <span>{{ Config::get('languages')[App::getLocale()] }}</span>
-                            {{ dd(Config::get('languages.it')) }}
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                             @foreach (Config::get('languages') as $lang => $language)
