@@ -177,10 +177,13 @@
    "Italian":"Italiano",
    "English":"Inglese",
 
-    "Prices from opening to 29th July and from 5th September until closing": "Dall'apertura al 29 Luglio - Dal 5 Settembre alla chiusura", 
+    "Prices from opening to 29th July and from 5th September until closing": "Dall'apertura al 29 Luglio - Dal 5 Settembre alla chiusura",
     "Prices from 30th July to 4th September":"Dal 30 Luglio al 4 Settembre",
-    "Availability for": "Disponibilità dal", 
+    "Availability for": "Disponibilità dal",
     "to": "al",
     "Zone": "Zona",
-    "You cancelled your booking payment. Please refill the following data!": "Hai annullato il pagamento della tua prenotazione. Per favore, compila nuovamente i seguenti dati!" 
+    "You cancelled your booking payment. Please refill the following data!": "Hai annullato il pagamento della tua prenotazione. Per favore, compila nuovamente i seguenti dati!",
+    "Password must be at least 8 characters": "La password deve essere composta da almeno 8 caratteri.",
+    "Password confirmation does not match": "La conferma della password non corrisponde."
 }
+
