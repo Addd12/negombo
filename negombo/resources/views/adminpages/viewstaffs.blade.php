@@ -4,6 +4,7 @@
   <div class="container paddingTop20">
     <h1>{{ __('Negombo View Moderators') }}</h1>
     <hr>
+    
     <div class="row">
         <div class="col-sm-12">
             <table id="example" class="table table-striped table-bordered" style="width:100%">
@@ -35,6 +36,11 @@
                 </tbody>
             </table>
         </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-12">
+        <a class="btn btn-secondary" href="{{ route('register') }}">Add new member</a>
+      </div>
     </div>
   </div>
 @endsection
