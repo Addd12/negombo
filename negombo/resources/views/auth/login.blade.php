@@ -64,9 +64,9 @@
                                       </a>
                                   @endif
 
-                                      <a class="btn btn-link" href="{{ url('/register') }}">
+                                      {{-- <a class="btn btn-link" href="{{ url('/register') }}">
                                           {{ __('Register Now!') }}
-                                      </a>
+                                      </a> --}}
 
                               </div>
                           </div>
