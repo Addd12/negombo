@@ -12,7 +12,6 @@
                         @csrf
 
                         <input type="hidden" name="token" value="{{ $token }}">
-
                         <div class="form-group row">
                             <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
 
@@ -32,11 +31,16 @@
 
                             <div class="col-md-6">
                                 <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
-
                                 @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
+                                    @if($message == "validation.confirmed")
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ __('Password confirmation does not match!!') }}</strong>
+                                        </span>
+                                    @elseif($message == "validation.min.string")
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ __('Password must be at least 8 characters!!') }}</strong>
+                                        </span>
+                                    @endif
                                 @enderror
                             </div>
                         </div>

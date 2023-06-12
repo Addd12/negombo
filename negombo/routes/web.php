@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/welcome', function(){
   return view('welcome');
 });
+
 Route::get('/', 'PagesController@index')->name('user.index');
 Route::get('/viewplaces/{map_name}', 'PagesController@viewsmallplace')->name('user.viewsmallplace');
 Route::get('/booking/{place_id}/{checkin}/{checkout}/{error_msg}', 'PagesController@createbooking')->name('user.createbooking');
@@ -94,6 +95,7 @@ Route::group(['prefix' => 'admin'], function(){
   Route::post('/profile/update', 'AdminPagesController@profileupdate')->name('admin.profile.update');
 
   Route::get('/staffs', 'AdminPagesController@staffsview')->name('admin.staffs');
+  Route::get('/staffs/new', 'AdminPagesController@newStaff')->name('admin.staffs.new');
   Route::get('/staffs/edit/{id}', 'AdminPagesController@staffseditview')->name('admin.staffs.edit');
   Route::get('/staffs/delete/{id}', 'AdminPagesController@staffsdelete')->name('admin.staffs.delete');
 
