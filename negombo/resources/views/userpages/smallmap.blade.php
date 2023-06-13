@@ -74,7 +74,7 @@
                                   if((date('H')>=$close_h && date('i')>=$close_m) || (date('H')>=$close_hBig)){
                                     $today = date("Y-m-d H:i");
                                     $startday = date("Y-m-d", strtotime("+2 day"));
-                                    $makestr = '+'.($maparray["set_admin"]->max_no_days+7)." day";
+                                    $makestr = '+'.($maparray["set_admin"]->max_no_days+1)." day";
                                   }else{
                                     $today = date("Y-m-d H:i");
                                     $startday = date("Y-m-d", strtotime("+1 day"));
@@ -84,7 +84,13 @@
                                   $endday = date("Y-m-d", strtotime($makestr));
                                   //dump($endday);
                                   //dump($maparray['checkin_date'],$maparray['checkout_date']);
+                                  
+
                                 }
+                                if(Auth::check() && Auth::user()->role == "admin"){
+                                  $makestr = '+365 day';
+                                }
+                                //ddd($makestr);
                                   $place_hold = '<i class="fa fa-arrow-right" aria-hidden="true"></i>'." Check-in";
                             @endphp
 
@@ -148,7 +154,7 @@
                             <input id="searchdate_numberofdays" min="0" type="number" name="no_of_day" placeholder="{{ __('Number of days') }}: 1">
                             <?php
                             else: ?>
-                            <input id="searchdate_numberofdays" min="0" max="{{ $maparray["set_admin"]->max_no_days }}" type="number" name="no_of_day" placeholder="{{ __('Number of days') }}: 1">
+                            <input id="searchdate_numberofdays" min="0" max="{{ $maparray['set_admin']->max_no_days }}" type="number" name="no_of_day" placeholder="{{ __('Number of days') }}: 1">
                             <?php
                              endif
                             ?> --}}
@@ -179,7 +185,7 @@
                             <strong>{{ date('d-m-Y', strtotime($maparray['checkout_date'])) }}</strong></div>
                     @endisset
                     <div class="containersmallmap">
-                        <img id="baseMapimgStyle" src="{{ asset('images/maps/'.$maparray["map_name"].'.jpg') }}"
+                        <img id="baseMapimgStyle" src="{{ asset('images/maps/'.$maparray['map_name'].'.jpg') }}"
                              alt="Workplace" usemap="#workmap" height="600px" width="800px">
                         
 @if (isset($maparray['checkin_date']))
@@ -187,52 +193,36 @@
             @php
                 $ind=1;
             @endphp
-    @foreach ($maparray['places'] as $place)
-        @if( Auth::check() &&  Auth::user()->role == "admin")
-            @php
-            $makestr = '+365 day';
-            $place->status = 0;
-            @endphp
-            <a href="{{ route('user.createbooking',  ['place_id' => $place->place_id, 'checkin' => $maparray['checkin_date'], 'checkout' => $maparray['checkout_date'], 'error_msg' => 0]) }}"
-                class="mapmarkgrcls" id="{{ 'mapmarkgr'.$ind }}"
-                style="left: {{ $place->co_xl-15 }}px; top:{{ $place->co_yl-5 }}px;">{{ $place->place_id }}</a>
-
-            <script>
-                if (window.screen.width < 768) {
-                    document.getElementById("{{ 'mapmarkgr'.$ind }}").style.left = "{{ $place->co_xs-10 }}" + "px";
-                    document.getElementById("{{ 'mapmarkgr'.$ind }}").style.top = "{{ $place->co_ys-5 }}" + "px";
-                }
-            </script>
-        @else
-            @if ($place->status==0)
-                @php                                           
-                $makestr = '+'.($maparray["set_admin"]->max_no_days)." day";
-                @endphp
+            @foreach ($maparray['places'] as $place)
+                @if ($place->status==0)
+                    @php                                           
+                        $makestr = '+'.($maparray["set_admin"]->max_no_days)." day";
+                    @endphp
                     @if( strtotime($maparray['checkin_date']) > strtotime($makestr) )                                                                               
                         <a onclick="return false;" href="" id="{{ 'mapmarkgy'.$ind }}"
                         class="mapmarkgycls"
                         style="left: {{ $place->co_xl-15 }}px; top:{{ $place->co_yl-5 }}px;">{{ $place->place_id }}</a>
-                <script>
-                    if (window.screen.width < 768) {
-                        document.getElementById("{{ 'mapmarkgy'.$ind }}").style.left = "{{ $place->co_xs-10 }}" + "px";
-                        document.getElementById("{{ 'mapmarkgy'.$ind }}").style.top = "{{ $place->co_ys-5 }}" + "px";
-                    }
-                </script>
-                    
-                @else
-                    <a href="{{ route('user.createbooking',  ['place_id' => $place->place_id, 'checkin' => $maparray['checkin_date'], 'checkout' => $maparray['checkout_date'], 'error_msg' => 0]) }}"
-                        class="mapmarkgrcls" id="{{ 'mapmarkgr'.$ind }}"
-                        style="left: {{ $place->co_xl-15 }}px; top:{{ $place->co_yl-5 }}px;">{{ $place->place_id }}</a>
+                        <script>
+                            if (window.screen.width < 768) {
+                                document.getElementById("{{ 'mapmarkgy'.$ind }}").style.left = "{{ $place->co_xs-10 }}" + "px";
+                                document.getElementById("{{ 'mapmarkgy'.$ind }}").style.top = "{{ $place->co_ys-5 }}" + "px";
+                            }
+                        </script>
+                    @else
+                        <a href="{{ route('user.createbooking',  ['place_id' => $place->place_id, 'checkin' => $maparray['checkin_date'], 'checkout' => $maparray['checkout_date'], 'error_msg' => 0]) }}"
+                            class="mapmarkgrcls" id="{{ 'mapmarkgr'.$ind }}"
+                            style="left: {{ $place->co_xl-15 }}px; top:{{ $place->co_yl-5 }}px;">{{ $place->place_id }}</a>
 
-                    <script>
-                        if (window.screen.width < 768) {
-                            document.getElementById("{{ 'mapmarkgr'.$ind }}").style.left = "{{ $place->co_xs-10 }}" + "px";
-                            document.getElementById("{{ 'mapmarkgr'.$ind }}").style.top = "{{ $place->co_ys-5 }}" + "px";
-                        }
-                    </script>
-                                                   
+                        <script>
+                            if (window.screen.width < 768) {
+                                document.getElementById("{{ 'mapmarkgr'.$ind }}").style.left = "{{ $place->co_xs-10 }}" + "px";
+                                document.getElementById("{{ 'mapmarkgr'.$ind }}").style.top = "{{ $place->co_ys-5 }}" + "px";
+                            }
+                        </script>
+                                                    
+                    @endif
                 @endif
-                
+                    
                 @if ($place->status== -1)
                     {{-- menually control colors for links --}}
                     <a onclick="return false;" href="" id="{{ 'mapmarkgy'.$ind }}"
@@ -260,12 +250,10 @@
                         }
                     </script>
                 @endif
-                {{-- add some dynamic javascipt codes for mobile device --}}
-                @php
-                    $ind=$ind+1;
-                @endphp
-        @endif
-        @endif
+                    {{-- add some dynamic javascipt codes for mobile device --}}
+                    @php
+                        $ind=$ind+1;
+                    @endphp
             @endforeach
         @endisset
 @else
