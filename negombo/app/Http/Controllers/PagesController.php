@@ -87,40 +87,6 @@ class PagesController extends Controller
 
  public function createbooking($place_id, $checkin, $checkout, $error_msg){
 
-        if(Auth::check() && Auth::user()->role == "admin"){
-          $booking = new Booking;
-        $booking->place_id = $place_id;
-        $booking->user_checkin = $checkin;
-        $booking->user_checkout = $checkout;
-        $t = time();
-        //make valid URL
-        $set_admin = new SettingAdmin;
-        // $set_admin->bookingURLvalidation($checkin, $checkout);
-        // return;
-        $set_admin->max_no_days = 10;
-        // if(!$set_admin->bookingURLvalidation($checkin, $checkout)){
-        //   return redirect()->route('error.404');
-        // }
-
-
-
-        // if(!$booking->check_availability()){
-        //   return redirect()->route('error.404');
-        // }
-
-        //Engaged the place for 15 min
-        $temp_book = new TempBooking;
-        $temp_book->makeEngaged($place_id, $checkin);
-
-        $map_coods = Bigmapmapping::orderBy('id')->get();
-        $place = Place::where('place_id',$place_id)->first();
-        $set_admin = SettingAdmin::orderBy('id')->first();
-        $place->price = $set_admin->adult1_price;
-        $maparray = array('map_coods' => $map_coods, 'place' => $place, 'checkin' => $checkin, 'checkout'=> $checkout, 'set_admin' => $set_admin, 'error_msg'=> $error_msg);
-        return view('userpages.bookingplace')->with('maparray', $maparray);
-          
-        }
-  
         if(Auth::user()){
         $booking = new Booking;
         $booking->place_id = $place_id;

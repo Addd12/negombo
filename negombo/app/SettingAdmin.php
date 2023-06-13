@@ -104,6 +104,7 @@ class SettingAdmin extends Model
               }
               else{
                 $makestr = '+'.($set_admin->max_no_days-1)." day";
+                //ddd($makestr);
               }
               
               $close_h = date('H', strtotime($set_admin->closing_time));
