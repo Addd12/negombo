@@ -130,7 +130,7 @@
                                     [1-4]: </label>
                                 <div class="col-md-6">
                                     <select class="form-control booking_inp_textbox_style" id="numberofguest"
-                                            name="numberofguest" onchange="addFieldsadmin(this.value);">
+                                            name="numberofguest">
                                         <option value="0" active>1</option>
                                         <option value="1">2</option>
                                         <option value="2">3</option>
@@ -145,7 +145,7 @@
                                     [1-4]: </label>
                                 <div class="col-md-6">
                                     <select class="form-control booking_inp_textbox_style" id="numberofbabies"
-                                            name="numberofbabies" onchange="addFieldsadmin2(this.value);">
+                                            name="numberofbabies">
                                         <option value="0" active>0</option>
                                         <option id="hidden_op_style1" value="1">1</option>
                                         <option id="hidden_op_style2" value="2">2</option>
