@@ -101,7 +101,7 @@ function cnvs_getCoordinates_small(e){
       var val=0;
       for (var i = 0; i < numoffld; i++) {
           val = i+1;
-          $(wrapper).append('<div class="form-group row dyinpfld"> <label for="surename" class="col-md-4 col-form-label text-md-right">Ospite '+val+' Nome Cognome:</label> <div class="col-md-6"> <input class="form-control booking_inp_textbox_style" type="text" name="guestnames[]" required/></div></div>');
+          $(wrapper).append('<div class="form-group row dyinpfld"> <label for="surename" class="col-md-4 col-form-label text-md-right">Ospite '+val+' Nome Cognome:</label> <div class="col-md-6"> <input class="form-control booking_inp_textbox_style" type="text" name="guestnames[]"/></div></div>');
       }
       var numOfbbyoption = 4-numoffld;
       // preprocessing

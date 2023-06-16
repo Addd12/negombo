@@ -549,4 +549,5 @@ class PagesController extends Controller
         return view('userpages.smallmap')->with('maparray', $maparray);
     }
 
+ 
 }
