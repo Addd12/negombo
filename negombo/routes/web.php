@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\AdminPagesController;
+use App\Http\Controllers\PagesController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -49,9 +51,14 @@ Route::get('/languageDemo', 'HomeController@languageDemo');
 
 
 Route::group(['prefix' => 'admin'], function(){
+  //quick booking
+  Route::get('/quickbooking',[AdminPagesController::class,'quickbooking_show'])->name('quickbookingPage');
+  Route::get('/quickbooking/zones',[AdminPagesController::class,'getZones'])->name('quickbookingZones');
+  Route::get('/quickbooking/zones/places/',[PagesController::class,'quickbooking']);
+
   Route::get('/', 'AdminPagesController@dashboard')->name('admin');
   Route::post('/', 'AdminPagesController@dashboard')->name('admin');
-
+  
   Route::post('/place/submit', 'AdminPagesController@submitplace_search')->name('admin.place.submit');
   Route::post('/place/quickbooking', [App\Http\Controllers\AdminPagesController::class, 'quickbooking'])->name('admin.place.quickbooking');
   Route::get('/place/viewplaces', 'AdminPagesController@place_view')->name('admin.place.viewplaces');

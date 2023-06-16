@@ -25,6 +25,7 @@ class AdminPagesController extends Controller
 
   public function dashboard(Request $request)
   {
+   
     $set_admin = SettingAdmin::orderBy('id')->first();
 
     $numberofplace = Place::orderBy('places_id')->count();
@@ -60,8 +61,8 @@ class AdminPagesController extends Controller
         array_push($booking_place_array, $place_id);
       }
 
-      for ($i = 0; $i < count($booking_place_array); $i++) {
-
+      for ($i = 0; $i < count($booking_place_array); $i++)
+      {
         $booking = new Booking;
         $booking->place_id = $booking_place_array[$i];
 
@@ -71,56 +72,57 @@ class AdminPagesController extends Controller
         $isfound = Place::where('place_id', $booking->place_id)->count();
         if ($isfound <= 0)
           array_push($error_msg, "Place id is not found.");
-        if ($booking->check_availability() && count($error_msg) == 0) {
-          $booking->user_fullname = $request->user_fullname;
-          $booking->user_surname = $request->user_fullname;
-          $booking->user_email = $request->user_email;
-          $booking->user_phone = $request->user_phone;
-          $booking->user_no_of_guest = ($request->numberofguest) + 1;
-          $booking->user_no_of_babies = $request->numberofbabies;
-          if (isset($request->guestnames[0]))
-            $booking->guest_surname1 = $request->guestnames[0];
-          if (isset($request->guestnames[1]))
-            $booking->guest_surname2 = $request->guestnames[1];
-          if (isset($request->guestnames[2]))
-            $booking->guest_surname3 = $request->guestnames[2];
+        if ($booking->check_availability() && count($error_msg) == 0)
+        {
+            $booking->user_fullname = $request->user_fullname;
+            $booking->user_surname = $request->user_fullname;
+            $booking->user_email = $request->user_email;
+            $booking->user_phone = $request->user_phone;
+            $booking->user_no_of_guest = ($request->numberofguest) + 1;
+            $booking->user_no_of_babies = $request->numberofbabies;
+            if (isset($request->guestnames[0]))
+              $booking->guest_surname1 = $request->guestnames[0];
+            if (isset($request->guestnames[1]))
+              $booking->guest_surname2 = $request->guestnames[1];
+            if (isset($request->guestnames[2]))
+              $booking->guest_surname3 = $request->guestnames[2];
 
-          if (isset($request->guestnamesbabies[0]))
-            $booking->baby_surname1 = $request->guestnamesbabies[0];
-          if (isset($request->guestnamesbabies[1]))
-            $booking->baby_surname2 = $request->guestnamesbabies[1];
-          if (isset($request->guestnamesbabies[2]))
-            $booking->baby_surname3 = $request->guestnamesbabies[2];
-          $booking->user_booking_tracking_id = uniqid('negombo_', true);
-          $booking->user_payment_type = $request->user_payment_type;
-          if ($booking->user_payment_type == "Admin") {
-            $booking->user_payment_type = 'Admin';
-            $booking->paid_ammount = 0;
-            $booking->is_approved = 1;
-          } else {
-            $datetime1 = new DateTime($booking->user_checkin);
-            $datetime2 = new DateTime($booking->user_checkout);
-            $interval = $datetime1->diff($datetime2);
-            $numberofdays = $interval->format('%a');
-
-            $booking->is_approved = 1;
-            $booking->user_payment_type = 'Entrance';
-            $promo = $request->promocode;
-            $promoCode = new PromoCode;
-            $discount = 0;
-            $price_temp = $set_admin->calculatePrice($booking->user_checkin, $booking->user_checkout, $booking->user_no_of_guest, $booking->user_no_of_babies);
-            $booking->paid_ammount = $price_temp;
-            $place->price = $price_temp;
-            if ($promoCode->checkingValidity($promo, $place->map_name, $numberofdays)) {
-              $booking->user_promo = $promo;
-              $discount = $promoCode->discountCalculate($booking->user_promo, $place->price);
-              $place->price = $place->price - $discount;
-              $booking->paid_ammount = $place->price;
+            if (isset($request->guestnamesbabies[0]))
+              $booking->baby_surname1 = $request->guestnamesbabies[0];
+            if (isset($request->guestnamesbabies[1]))
+              $booking->baby_surname2 = $request->guestnamesbabies[1];
+            if (isset($request->guestnamesbabies[2]))
+              $booking->baby_surname3 = $request->guestnamesbabies[2];
+            $booking->user_booking_tracking_id = uniqid('negombo_', true);
+            $booking->user_payment_type = $request->user_payment_type;
+            if ($booking->user_payment_type == "Admin") {
+              $booking->user_payment_type = 'Admin';
+              $booking->paid_ammount = 0;
               $booking->is_approved = 1;
-            } else if (isset($request->promocode)) {
-              array_push($error_msg, "Given Promo is not worked.");
+            } else {
+              $datetime1 = new DateTime($booking->user_checkin);
+              $datetime2 = new DateTime($booking->user_checkout);
+              $interval = $datetime1->diff($datetime2);
+              $numberofdays = $interval->format('%a');
+
+              $booking->is_approved = 1;
+              $booking->user_payment_type = 'Entrance';
+              $promo = $request->promocode;
+              $promoCode = new PromoCode;
+              $discount = 0;
+              $price_temp = $set_admin->calculatePrice($booking->user_checkin, $booking->user_checkout, $booking->user_no_of_guest, $booking->user_no_of_babies);
+              $booking->paid_ammount = $price_temp;
+              $place->price = $price_temp;
+              if ($promoCode->checkingValidity($promo, $place->map_name, $numberofdays)) {
+                $booking->user_promo = $promo;
+                $discount = $promoCode->discountCalculate($booking->user_promo, $place->price);
+                $place->price = $place->price - $discount;
+                $booking->paid_ammount = $place->price;
+                $booking->is_approved = 1;
+              } else if (isset($request->promocode)) {
+                array_push($error_msg, "Given Promo is not worked.");
+              }
             }
-          }
         } else {
           array_push($error_msg, "Place " . $booking->place_id . " is not available for this time.");
         }
@@ -141,7 +143,7 @@ class AdminPagesController extends Controller
         if (Auth::user()) {
           $booking->creator_name = Auth::user()->name;
         }
-
+        // dd($booking);dd("hit dashboard");
         $booking->save();
       }
 
@@ -703,4 +705,84 @@ class AdminPagesController extends Controller
       return redirect()->route('admin.place.viewplaces');
     }
 
+
+    /**Function to get all zones from DB */
+    public function getZones( Request $req){
+       $map_name = $req->get('map_name');
+     
+          $set_admin = SettingAdmin::orderBy('id')->first();
+          $checkin_date = $req->t_start;
+          if($checkin_date=="null")
+            return redirect()->route('adminpages.quickbooking', $map_name);
+          $nmofdays = ($req->no_of_day)-1;
+
+          if(number_format($req->no_of_day)<=0)
+            $nmofdays = 0;
+          $checkout_date = $checkin_date;
+          if(isset($req->no_of_day))
+          {
+            $date = $checkin_date;
+            $date = strtotime($date);
+            $date = strtotime("+".$nmofdays." day", $date);
+            $checkout_date = date('Y-m-d', $date);
+          }
+
+          //
+          // $map_coods = Bigmapmapping::orderBy('id')->get();
+          $all_places = Place::where('map_name', $map_name)->get();
+          $places = array();
+          if(isset($req->t_start))
+          {
+            $booking = new Booking;
+            foreach ($all_places as $place)
+            {
+              if($place->status == -1)
+              {
+                
+                array_push($places, $place);
+                continue;
+              }
+              // echo "after initial status check -- ".$place->status."<br>";
+              $place->status = 0;
+              $place->status = $booking->place_is_available($place->place_id, $checkin_date, $checkout_date);
+              // $place->status = $booking->place_is_available_subs($place->place_id, $checkin_date, $checkout_date, $place->status);
+
+              array_push($places, $place);
+            }
+          }else{
+            $places = $all_places;
+          }
+
+          if(Auth::user())
+          {
+            if(number_format($req->no_of_day)>$set_admin->max_no_days && Auth::user()->role != "admin"){
+              $err_msg= "error";
+              // return redirect()->route('user.viewsmallplace', $map_name)->with('err_msg', $err_msg);
+              $places_maparray = array('map_name' => $map_name,  'places'=> $places, 'set_admin'=> $set_admin, 'err_msg' => $err_msg);
+              return view('adminpages.quickbooking')->with('places_maparra', $places_maparray);
+            }
+          }else if(number_format($req->no_of_day)>$set_admin->max_no_days){
+            $err_msg= "error";
+            // return redirect()->route('user.viewsmallplace', $map_name)->with('err_msg', $err_msg);
+            $places_maparray = array('map_name' => $map_name,  'places'=> $places, 'set_admin'=> $set_admin, 'err_msg' => $err_msg);
+            return view('adminpages.quickbooking')->with('places_maparra', $places_maparray);
+
+          }
+
+          $places_maparray = array('map_name' => $map_name, 'places'=> $places, 
+                              'checkin_date' => $req->t_start,
+                              'checkout_date' => $req->t_end, 
+                              'set_admin'=> $set_admin);
+        //  dd($places_maparray);
+          return  view('adminpages.quickbooking')->with('places_maparray', $places_maparray);
+      }
+
+
+
+    /** Display quickbooking page */
+    public function quickbooking_show(){
+      $places = Place::distinct()->get(['map_name']);
+      session(['places' => $places]);
+      return view('adminpages.quickbooking');
+    }
 }

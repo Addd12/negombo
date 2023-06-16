@@ -28,7 +28,7 @@
             <div class="col-sm-6 offset-sm-1" style="padding-top:40px">
                 <h2 id="heading_qt">{{ __('Book your favorite place on the map') }}</h2>
                 <form action="" method="GET">
-                    <!-- jee modified -- repeated -->
+                
                     {{ csrf_field() }} 
                     <br>
                     <noscript>
@@ -56,11 +56,6 @@
                                   $startday = date("Y-m-d");
                                 //dump($startday);
                                   $endday = date("Y-m-d", strtotime($makestr));
-
-                                  //jee modified start
-                                  echo $startday." -- start day";
-                                  echo $endday." -- end day<br>";
-                                  //jee modified end
 
                                 }else{
                                     // for non-logged in user

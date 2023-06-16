@@ -1,7 +1,7 @@
 @extends('layouts.adminmaster')
 
 @section('section')
-  <div class="container paddingTop20">
+  <div class="container vh-100 pt-2">
     <h1>Negombo Admin Panel</h1>
     <hr>
     <div class="row">
@@ -11,7 +11,7 @@
             <span class="dashboardcardstyle">{{ __('Quick Booking') }}</span>
           </div>
           <div class="card-body">
-            <center><button type="button" class="btn btn-success dashboardcardbodystyle2" data-toggle="modal" data-target="#myModal">{{ __('Book Now') }}</button></center>
+            <a class="btn btn-success dashboardcardbodystyle2"  href="{{ route('quickbookingPage') }}">{{ __('Book Now') }}</a>
             @include('layouts.quickbookingmodal')
           </div>
         </div>
